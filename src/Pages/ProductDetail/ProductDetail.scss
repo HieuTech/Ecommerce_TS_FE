@@ -1,0 +1,169 @@
+.detail-container {
+  padding: 50px;
+  max-width: 1350px;
+}
+.another-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+  padding: 10px;
+}
+.another-grid-item {
+  border: 1px solid;
+  border-radius: 5px;
+  width: 200px;
+  height: 450px;
+  padding: 15px;
+  text-align: center;
+  &:hover {
+    background-color: rgb(104, 203, 203);
+  }
+}
+
+.another-price{
+    font-size: 1.3em;
+    background-color: brown;
+    color: azure;
+    padding: 10px;
+    border-radius: 5px;
+}
+.another-img {
+  width: 200px;
+  height: 300px;
+}
+.another-item {
+  background-color: #f0f0f0;
+  padding: 10px;
+  text-align: center;
+  overflow: hidden;
+  cursor: pointer;
+}
+.another-item {
+  transition: transform 0.3s; /* Tạo hiệu ứng chuyển đổi */
+}
+.another-title {
+  text-align: center;
+  font-size: 3em;
+  color: rgb(175, 96, 175);
+}
+.another-item:hover {
+  transform: scale(1.1); /* Phóng to hình ảnh lên 120% khi hover */
+}
+.sub-img {
+  cursor: pointer;
+  overflow: hidden;
+}
+.sub-img:hover {
+  transition: transform 0.3s ease;
+  transform: scale(1.1);
+}
+.another-img {
+  width: 200px;
+}
+
+.detail-grid {
+  display: grid;
+  grid-template-columns: 10% 35% auto; /* Cột 1 chiếm 15%, cột 2 chiếm 30%, cột 3 chiếm phần còn lại */
+  gap: 20px; /* Khoảng cách giữa các grid item */
+}
+
+.grid-item {
+  width: 100%; /* Đảm bảo grid item chiếm full chiều rộng của cột */
+}
+
+.detail-sub-img {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px; /* Khoảng cách giữa các hình ảnh phụ */
+}
+
+.sub-img {
+  width: 100%;
+}
+
+.detail-main-img .main-img {
+  width: 100%; /* Đảm bảo hình ảnh chính chiếm full chiều rộng của grid item */
+  object-fit: contain;
+}
+
+.detail-content {
+  display: flex;
+  flex-direction: column;
+
+  gap: 10px; /* Khoảng cách giữa các phần tử trong detail content */
+}
+
+.title {
+  margin: 0px; /* Loại bỏ margin mặc định */
+  color: brown;
+  font-size: 4em;
+}
+
+.item-price {
+  color: green; /* Màu cho giá sản phẩm */
+  font-size: 1.5em;
+  margin: 10px 0;
+}
+
+.item-desc {
+  line-height: 1.5; /* Khoảng cách dòng */
+  font-size: 1.5em;
+  width: 80%;
+  color: rgb(137, 44, 44);
+}
+
+.quantity {
+  color: rgb(137, 44, 44);
+  margin-top: 10px; /* Khoảng cách top */
+}
+
+#quantity {
+  width: 70px;
+  height: 40px;
+  font-size: 25px;
+  padding: 10px;
+}
+.add-to-cart {
+  width: 50vw;
+  padding: 20px;
+  background-color: rgb(183, 9, 9);
+  color: white;
+  border: none;
+  border-radius: 5px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+}
+.add-to-cart:hover {
+  background-color: red;
+  opacity: 0.8;
+}
+
+.detail-content {
+  margin: 20px;
+}
+.content-img {
+  width: 100vw;
+  object-fit: cover;
+  height: 200px;
+}
+.main-content {
+  text-align: center;
+}
+.content-title {
+  font-size: 2.5em;
+  color: red;
+}
+.product-detail-header {
+  color: rgb(180, 29, 29);
+  font-size: 2em;
+  font-weight: 600;
+}
+
+.content-desc,
+span {
+  text-align: left;
+  color: brown;
+  font-size: 1.2em;
+}

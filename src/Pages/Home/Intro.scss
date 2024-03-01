@@ -1,0 +1,34 @@
+.product-container {
+  margin: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.image {
+  width: 700px;
+  border-radius: 10px;
+}
+.intro {
+  width: 500px;
+  text-align: center;
+  margin-left: 50px;
+}
+.intro-title {
+  color: rgb(203, 55, 55);
+  font-size: 2.5em;
+}
+.intro-desc {
+  color: brown;
+  font-size: 1.3em;
+}
+.btn-order {
+  color: white;
+  border: none;
+  background-color: red;
+  border-radius: 10px;
+  padding: 20px 40px;
+  font-size: 1.6em;
+}
+.btn-order:hover {
+  opacity: 0.6;
+}

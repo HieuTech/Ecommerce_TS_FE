@@ -1,0 +1,81 @@
+.instagram-section {
+
+  display: grid;
+  grid-template-columns: repeat(12, 1fr); // 12-column grid
+  grid-gap: 20px; // Space between grid items
+  max-width: 1200px; // Max width of the section, you can adjust as needed
+  margin: auto; // Center the section
+  padding: 70px;
+
+  .instagram-call-to-action {
+    grid-column: span 4; // Call to action spans 4 columns
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    h2 {
+      font-size: 2em; // Adjust font size as needed
+      margin-bottom: 0.5em;
+      color:rgb(247, 145, 162)
+    }
+
+    p {
+      font-size: 1.2em; // Adjust font size as needed
+      margin-bottom: 1em;
+      color: rgb(204, 116, 241);
+    }
+
+    .instagram-link {
+      font-size: 1.5em; // Adjust font size as needed
+      text-decoration: none;
+      color: #000; // Adjust the color to fit your design
+    }
+  }
+
+  .instagram-image-gallery {
+    grid-column: span 8; // Image gallery spans 8 columns
+    display: grid;
+    grid-template-columns: repeat(3, 1fr); // Three images per row
+    grid-gap: 20px; // Space between images
+
+    .gallery-image {
+      width: 100%;
+      height: auto;
+      object-fit: cover;
+      border-radius: 10px; // Adjust as needed
+    }
+  }
+}
+
+// Adjustments for responsiveness
+@media (max-width: 768px) {
+  .instagram-section {
+    grid-template-columns: repeat(8, 1fr);
+  }
+
+  .instagram-call-to-action {
+    grid-column: span 8;
+  }
+
+  .instagram-image-gallery {
+    grid-column: span 8;
+    grid-template-columns: repeat(2, 1fr); // Two images per row for smaller screens
+  }
+}
+
+@media (max-width: 480px) {
+  .instagram-section {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 10px;
+  }
+
+  .instagram-call-to-action,
+  .instagram-image-gallery {
+    grid-column: span 4;
+  }
+
+  .instagram-image-gallery {
+    grid-template-columns: 1fr; // One image per row for very small screens
+  }
+}

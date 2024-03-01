@@ -1,0 +1,103 @@
+/* footer.scss */
+
+// Định dạng chung cho footer
+footer {
+  background-color: #333;
+  color: #fff;
+  padding: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// Kiểu cho Google Maps
+.google-map {
+  flex: 1;
+  margin-right: 20px;
+
+  iframe {
+    width: 600px;
+    height: 100%;
+  }
+}
+
+// Kiểu cho Email Form
+.email-form {
+  flex: 1;
+  max-width: 400px;
+    
+margin:0 30px;
+  h2 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+
+  form {
+    display: flex;
+    height: 34px;
+    input[type="email"] {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      width: 190px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #ff5722;
+      color: #fff;
+      border: none;
+      width: 90px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.3s;
+      span{
+        font-size: 15px;
+     }
+      &:hover {
+        background-color: #d84315;
+      }
+    }
+  }
+}
+
+// Kiểu cho Social Media Links
+.social-media-links {
+  flex: 1;
+    margin-left: 80px;
+  h2 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }
+
+  ul {
+    list-style: none;
+    padding: 0;
+
+    li {
+      display: inline-block;
+      margin-right: 40px;
+    list-style: none;
+      a {
+        color: #fff;
+        font-size: 1.5rem;
+        text-decoration: none;
+        transition: color 0.3s;
+
+        &:hover {
+          color: #ff5722;
+        }
+      }
+    }
+  }
+}
+
+// Kiểu cho Copyright
+.copyright {
+  flex: 1;
+  text-align: center;
+  font-size: 1rem;
+  margin-top: 20px;
+}

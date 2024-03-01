@@ -1,0 +1,75 @@
+/* OrderReceived.css */
+
+/* Container styles */
+.order-received-container {
+  text-align: center;
+  padding: 20px;
+}
+
+/* Heading styles */
+.order-received-container h2 {
+  color: green;
+  font-size: 30px;
+  margin-bottom: 10px;
+}
+
+/* Thank you message styles */
+.order-received-container p {
+  color: #666;
+  font-size: 18px;
+}
+
+/* Order details heading styles */
+.order-received-container h3 {
+  color: #333;
+  font-size: 20px;
+  margin-top: 20px;
+  margin-bottom: 10px;
+}
+
+/* Cart item styles */
+.cart-items {
+  list-style: none;
+  padding: 0;
+}
+
+.cart-item {
+  display: flex;
+  margin-bottom: 20px;
+  align-items: center;
+}
+
+.cart-item-image {
+  width: 80px;
+  height: 80px;
+  margin-right: 10px;
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.cart-item-details {
+  display: flex;
+  flex-direction: column;
+}
+
+.cart-item-name {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+.cart-item-price {
+  font-size: 16px;
+  color: #777;
+}
+
+/* Link styles */
+.btn-order-received {
+  display: block;
+  margin: 20px auto;
+  font-size: 18px;
+  text-decoration: none;
+  color: #007bff;
+  padding: 10px 20px;
+  border: none;
+    cursor: pointer;
+}
