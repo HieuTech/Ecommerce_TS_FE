@@ -1,0 +1,92 @@
+/* styles.css or your CSS file */
+.form-add {
+   display: flex;
+   flex-direction: column; /* Stack form elements vertically */
+   align-items: center; /* Center horizontally */
+   justify-content: center; /* Center vertically */
+    /* Adjust width as needed */
+   padding: 30px;
+   border-radius: 10px; 
+   background-color: #f0f0f0; /* Example background color */
+   box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2); /* Subtle box shadow */
+}
+
+.form-group {
+   width: 100%; 
+   margin-bottom: 20px; 
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 5px; 
+    font-weight: bold;
+}
+
+.form-group input[type="text"],
+.form-group input[type="number"],
+.form-group input[type="file"] {
+    width: 100%;  
+    padding: 10px;  
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.form-group input[type="checkbox"] {
+    margin-right: 5px; /* Add spacing */
+}
+
+.btn-add-product {
+   background-color: #007bff; 
+   color: white;
+   padding: 10px 20px;  
+   border: none;
+   border-radius: 5px;
+   cursor: pointer; 
+   transition: background-color 0.3s ease; /* Add transition */
+}
+
+.btn-add-product:hover {
+   background-color: #0056b3; /* Darker blue on hover */
+}
+
+.btn-add-product:active {
+   background-color: #003e8a; /* Even darker blue on press */
+   transform: translateY(2px);  /* Subtle downwards shift */
+}
+
+
+// ---------------------------CATEGORIES CSS-------------
+/* table.module.css */
+.categories-container {
+    /* ... existing styles ... */
+}
+
+.categories-title {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+}
+
+.product-table {
+    width: 100%; 
+    border-collapse: collapse; 
+}
+
+.img{
+    width: 100px;
+}
+.table-header {
+    background-color: #f0f0f0;
+    padding: 10px;
+    font-weight: bold;
+}
+
+.table-cell {
+    padding: 10px;
+    border: 1px solid #ddd; 
+}
+
+.product-row:nth-child(even) { /* Style các dòng table chẵn */
+    background-color: #f8f8f8;
+}
+

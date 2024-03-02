@@ -1,36 +1,32 @@
-import React, { useEffect } from 'react'
-import { categoriesAction } from '../../../Stores/Slice/Categories';
+import React, { useEffect } from "react";
+import { categoriesAction } from "../../../Stores/Slice/CategoriesSlice";
 import { useDispatch } from "react-redux";
-import { useNavigate } from 'react-router-dom';
-import apis from '../../../apis';
+import { useNavigate } from "react-router-dom";
+import apis from "../../../apis";
 export default function ShopProduct(props: any) {
-    const { listProduct } = props
+  const { listProduct } = props;
 
-     const navigate = useNavigate();
-     const dispatch = useDispatch();
-    const displayRating = (rating: number) => {
-      const stars: React.ReactNode[] = [];
+  const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const displayRating = (rating: number) => {
+    const stars: React.ReactNode[] = [];
 
-      for (let i = 0; i < rating; i++) {
-        stars.push(<i key={i} className="fa fa-star"></i>);
-      }
-      return stars;
-    };
-    const handleClick = async (id: number) => {
-       try {
-         const res = await apis.categoriesApi.getAllCategories();  
-        const categoriesList = res.data;
-           dispatch(categoriesAction.setData({ id, categoriesList }));
-       } catch (error) {
-        console.log("error",error);
-        
-       }
-      navigate("/product-detail");
-      
-    };
+    for (let i = 0; i < rating; i++) {
+      stars.push(<i key={i} className="fa fa-star"></i>);
+    }
+    return stars;
+  };
+  const handleClick = async (id: number) => {
+    try {
+      const res = await apis.categoriesApi.getAllCategories();
+      const categoriesList = res.data;
+      dispatch(categoriesAction.setData({ id, categoriesList }));
+    } catch (error) {
+      console.log("error", error);
+    }
+    navigate("/product-detail");
+  };
 
-     
- 
   return (
     <div className="product-grid">
       {listProduct?.map((product: any, index: number) => (

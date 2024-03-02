@@ -1,0 +1,31 @@
+Khi click vào 1 sản phẩm thì product detail hiển thị thông tin bình thường.
+
+product detail khi reload lại trang bị mất dữ liệu, lý do khi click vào 1 sản phẩm, đã dispatch categoriesList và productId vào store, để tiếp tục hiển thị ra bên product detail. Nên refresh lại thì store reset.
+
+Giải pháp khắc phục??
+
+
+
+
+categories": [
+    {
+      "id": 1,
+      "name": "pizza",
+      "products": [
+        {
+          "id": 1,
+          "name": "Vegan Spinach and Tomato Pizza",
+          "price": 669.99,
+          "on_sale": false,
+          "rating": 3,
+          "description": "A simple yet delicious pizza with tomato sauce, vegan cheese, and fresh basil leaves.",
+          "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/pizza%2Fae9a7d80-5425-49ec-8a3a-dc387b47c8d5.jpg?alt=media&token=abad7291-45e2-4f5c-876b-b140aa2cfa05"
+        },
+      ]
+    }
+] 
+
+api call kiểu gì để thêm sản phầm?
+
+
+routes admin/onsale chua dc
