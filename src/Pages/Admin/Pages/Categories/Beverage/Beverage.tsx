@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import apis from "../../../../../apis";
-// import "./Beverage.scss";
-import "../../Components/Modal.scss";
 
-import ModalAdd from "../../Components/ModalAdd";
-import ModalConfirm from "../../Components/ModalConfirm";
+
+import ModalConfirm from "../../../components/ModalConfirm";
+import ModalAdd from "../../../components/ModalAdd";
 export default function Beverage(props: any) {
   const { Beverage } = props;
   const [stateBeverage, setStateBeverage] = useState();
@@ -12,7 +11,7 @@ export default function Beverage(props: any) {
   const handleDelete = (id) => {};
   useEffect(() => {
     const fetchBeverage = async () => {
-      const res = await apis.categoriesApi.getCategoriesByName(Beverage);
+      const res = await apis.categoriesApi.getCategoriesByName("Beverage");
       console.log("res", res.data[0]);
 
       setStateBeverage(res.data[0]);

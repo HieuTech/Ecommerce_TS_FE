@@ -51,7 +51,7 @@ function getItem(
 const items: MenuItem[] = [
   getItem("DashBoard", "DashBoard", <DashboardOutlined />),
   getItem("User", "User", <TeamOutlined />, [
-    getItem("List User", "List User", <UserOutlined />),
+    getItem("List User", "ListUser", <UserOutlined />),
     getItem("Email", "Email", <MailOutlined />),
     getItem("Messages", "Messages", <MessageOutlined />),
     getItem("FeedBack", "FeedBack", <FileOutlined />),
@@ -63,14 +63,14 @@ const items: MenuItem[] = [
     getItem("Beverage", "Beverage"),
   ]),
   getItem("Products", "Products", <ProductOutlined />, [
-    getItem("On Sale", "On Sale", <FireOutlined />),
+    getItem("On Sale", "OnSale", <FireOutlined />),
     getItem("Rating", "Rating", <LikeOutlined />),
-    getItem("Best Seller", "Best Seller", <HeartOutlined />),
+    getItem("Best Seller", "BestSeller", <HeartOutlined />),
     getItem("Voucher", "Voucher", <GiftOutlined />),
   ]),
 
   getItem("Orders", "Orders", <TeamOutlined />, [
-    getItem("Order List", "Order List", <OrderedListOutlined />),
+    getItem("Order List", "OrderList", <OrderedListOutlined />),
     getItem("Canceled", "Canceled", <RestOutlined />),
     getItem("Pending", "Pending", <PauseOutlined />),
     getItem("Approved", "Approved", <CheckOutlined />),
@@ -85,21 +85,51 @@ const items: MenuItem[] = [
 
 export default function SideBar() {
   const [collapsed, setCollapsed] = useState(false);
+  const navigate = useNavigate()
     const dispatch = useDispatch()
   const handleNavigate = (e) => {
-    console.log("da vao", e.key);
     switch (e.key) {
       case "Pizza":
-        dispatch(adminAction.setPizza("Pizza"));
+        // dispatch(adminAction.setPizza("Pizza"));
+        navigate("/admin/pizza");
         break;
       case "Cake":
-        dispatch(adminAction.setCake("Cake"));
+        // dispatch(adminAction.setCake("Cake"));
+                navigate("/admin/cake");
+
         break;
       case "Beverage":
-        dispatch(adminAction.setBeverage("Beverage"));
+        // dispatch(adminAction.setBeverage("Beverage"));
+            navigate("/admin/beverage");
+
         break;
       case "Vegan":
-        dispatch(adminAction.setVegan("Vegan"));
+        // dispatch(adminAction.setVegan("Vegan"));
+                navigate("/admin/vegan");
+
+        break;
+      case "DashBoard":
+        dispatch(adminAction.setDashBoard("DashBoard"));
+        break;
+      case "ListOrder":
+        dispatch(adminAction.setListOrder("ListOrder"));
+        break;
+      case "BestSeller":
+        navigate("/admin/best-seller");
+        // dispatch(adminAction.setBestSeller("BestSeller"));
+        break;
+      case "ListUser":
+        // dispatch(adminAction.setListUser("ListUser"));
+                navigate("/admin/list-user");
+
+        break;
+      case "ListProduct":
+        dispatch(adminAction.setListProduct("ListProduct"));
+        break;
+      case "OnSale":
+        // dispatch(adminAction.setOnSale("OnSale"));
+                navigate("/admin/on-sale");
+
         break;
 
       default:
@@ -119,7 +149,6 @@ export default function SideBar() {
         <div className="demo-logo-vertical" />
         <Menu
           theme="dark"
-          defaultSelectedKeys={["1"]}
           mode="inline"
           onClick={(event) => {
             handleNavigate(event);

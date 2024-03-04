@@ -1,18 +1,17 @@
 import React, { useEffect, useState } from "react";
 import apis from "../../../../../apis";
-// import "./Pizza.scss"
-import "../../Components/Modal.scss";
 
-import ModalAdd from "../../Components/ModalAdd";
-import ModalConfirm from "../../Components/ModalConfirm";
+import ModalAdd from "../../../components/ModalAdd";
+import ModalConfirm from "../../../components/ModalConfirm";
 export default function Pizza(props: any) {
   const { Pizza } = props;
+  
   const [statePizza, setStatePizza] = useState();
 
   const handleDelete = (id) => {};
   useEffect(() => {
     const fetchPizza = async () => {
-      const res = await apis.categoriesApi.getCategoriesByName(Pizza);
+      const res = await apis.categoriesApi.getCategoriesByName("Pizza");
       console.log("res", res.data[0]);
 
       setStatePizza(res.data[0]);
@@ -48,9 +47,7 @@ export default function Pizza(props: any) {
                   <img src={product.img} alt="" className="img" />
                 </td>
                 <td className="table-cell">
-                  
-                    <ModalConfirm productId={product.id}/>
-                  
+                  <ModalConfirm productId={product.id} />
                 </td>
               </tr>
             );

@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from "react";
 import apis from "../../../../../apis";
-// import "./Vegan.scss";
-import "../../Components/Modal.scss"
-import ModalAdd from "../../Components/ModalAdd";
-import ModalConfirm from "../../Components/ModalConfirm";
+import ModalAdd from "../../../components/ModalAdd";
+import ModalConfirm from "../../../components/ModalConfirm";
 export default function Vegan(props: any) {
   const { Vegan } = props;
   const [stateVegan, setStateVegan] = useState();
@@ -11,8 +9,7 @@ export default function Vegan(props: any) {
   const handleDelete = (id) => {};
   useEffect(() => {
     const fetchVegan = async () => {
-      const res = await apis.categoriesApi.getCategoriesByName(Vegan);
-      console.log("res", res.data[0]);
+      const res = await apis.categoriesApi.getCategoriesByName("Vegan");
 
       setStateVegan(res.data[0]);
     };

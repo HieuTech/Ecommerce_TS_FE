@@ -1,8 +1,6 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import { lazyFn } from "./Lazy";
-import Admin from "../Pages/Admin/Admin";
-import User from "../Pages/Admin/Pages/Users/ListUser/ListUser";
 
 export default function RoutesConfig() {
   return (
@@ -31,7 +29,7 @@ export default function RoutesConfig() {
           element={lazyFn(() => import("../Pages/OrderReceived/OrderReceived"))}
         />
         <Route
-          path="/product-detail"
+          path="/product-detail/:id"
           element={lazyFn(() => import("../Pages/ProductDetail/ProductDetail"))}
         />
         <Route
@@ -51,19 +49,52 @@ export default function RoutesConfig() {
         <Route
           path="/admin"
           element={lazyFn(() => import("../Pages/Admin/Admin"))}
-        ></Route>
-        <Route
-          path="/list-user"
-          element={lazyFn(
-            () => import("../Pages/Admin/Pages/Users/ListUser/ListUser")
-          )}
-        />
-        <Route
-          path="/on-sale"
-          element={lazyFn(
-            () => import("../Pages/Admin/Pages/Products/OnSale/OnSale")
-          )}
-        />
+        >
+          <Route
+            path="/admin/list-user"
+            element={lazyFn(
+              () => import("../Pages/Admin/Pages/Users/ListUser/ListUser")
+            )}
+          />
+          <Route
+            path="/admin/on-sale"
+            element={lazyFn(
+              () => import("../Pages/Admin/Pages/Products/OnSale/OnSale")
+            )}
+          />
+          <Route
+            path="/admin/pizza"
+            element={lazyFn(
+              () => import("../Pages/Admin/Pages/Categories/Pizza/Pizza")
+            )}
+          />
+          <Route
+            path="/admin/beverage"
+            element={lazyFn(
+              () => import("../Pages/Admin/Pages/Categories/Beverage/Beverage")
+            )}
+          />
+          <Route
+            path="/admin/vegan"
+            element={lazyFn(
+              () => import("../Pages/Admin/Pages/Categories/Vegan/Vegan")
+            )}
+          />
+          <Route
+            path="/admin/cake"
+            element={lazyFn(
+              () => import("../Pages/Admin/Pages/Categories/Cake/Cake")
+            )}
+          />
+          <Route
+            path="/admin/best-seller"
+            element={lazyFn(
+              () =>
+                import("../Pages/Admin/Pages/Products/BestSeller/BestSeller")
+            )}
+          />
+        </Route>
+
         {/* <Route
           path="/pizza"
           element={lazyFn(

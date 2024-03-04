@@ -9,20 +9,12 @@ import "font-awesome/css/font-awesome.min.css";
 import { uploadFileToStorage } from "../../firebase/index.ts";
 import ShopProduct from "./components/ShopProduct.tsx";
 
-interface Product {
-  id: number;
-  name: string;
-  price: number;
-  img: string;
-  on_sale: boolean;
-  rating: number;
-  price_sale: number;
-}
+import { Product } from "../../apis/product.api.ts";
 
 const Shop = () => {
   const [listProduct, setListProduct] = useState<Product[]>([]);
   const [price, setPrice] = useState("price");
-  const [folderName, setFolderName] = useState("");
+  // const [folderName, setFolderName] = useState("");
   const [isActiveCategories, setIsActiveCategories] = useState("");
   const [isActiveOnSale, setIsActiveOnSale] = useState(false);
   const [isActiveOnBestSeller, setIsActiveOnBestSeller] = useState(false);
@@ -68,11 +60,14 @@ const Shop = () => {
   //searchByCategories
   const searchByCategories = async (name: string) => {
     setIsActiveCategories(name);
-    setFolderName(name);
+    // setFolderName(name);
+
     try {
       const res = await apis.categoriesApi.getCategoriesByName(name);
       const data = res.data[0].products;
-      setListProduct(data);
+      
+    setListProduct(data);
+
     } catch (error) {
       console.log("error", error);
     }
@@ -93,23 +88,23 @@ const Shop = () => {
 
   //handleUploadFileBase
 
-  const uploadFile = async (e: any) => {
-    const localFile = e.target.files[0];
-    const urlFirebase = await uploadFileToStorage(localFile, folderName);
-    console.log("folderName", folderName);
+  // const uploadFile = async (e: any) => {
+  //   const localFile = e.target.files[0];
+  //   const urlFirebase = await uploadFileToStorage(localFile, folderName);
+  //   console.log("folderName", folderName);
 
-    console.log("urlFirebase", urlFirebase);
-  };
+  //   console.log("urlFirebase", urlFirebase);
+  // };
 
   return (
     <>
       <Header />
 
       <h3 className="shop-title">ORDER ONLINE</h3>
-      <div>
+      {/* <div>
         <label htmlFor="">Upload file </label>
         <input type="file" onChange={uploadFile} />
-      </div>
+      </div> */}
       <div className="category">
         <h1
           className={`shop-pizza ${

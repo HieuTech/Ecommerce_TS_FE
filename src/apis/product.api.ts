@@ -2,11 +2,24 @@ import axios from "axios";
 
 const prefix = "products";
 
+export interface Product {
+  id: number;
+  name: string;
+  price: number;
+  img: string;
+  on_sale: boolean;
+  rating: number;
+  price_sale: number;
+  categories_id: number;
+}
+
 export const productApi = {
   getAllProduct: async () => {
     return await axios.get(`${import.meta.env.VITE_SERVER}/${prefix}`);
   },
-
+  getProducById: async (id: string) => {
+    return await axios.get(`${import.meta.env.VITE_SERVER}/${prefix}/${id}`);
+  },
   getProductByPage: async (_page: number, _per_page: number) => {
     return await axios.get(
       `${
@@ -45,6 +58,7 @@ export const productApi = {
         console.log("error", error);
       });
   },
+
   deleteProduct: async (id: number) => {
     return await axios
       .delete(`${import.meta.env.VITE_SERVER}/${prefix}/${id}`)

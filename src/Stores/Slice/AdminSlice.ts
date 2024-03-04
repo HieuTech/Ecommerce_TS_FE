@@ -6,6 +6,9 @@ export const adminSlice = createSlice({
     navigate: "",
   },
   reducers: {
+    setDashBoard: (state, action) => {
+      state.navigate = action.payload;
+    },
     setPizza: (state, action) => {
       state.navigate = action.payload;
     },
@@ -16,6 +19,21 @@ export const adminSlice = createSlice({
       state.navigate = action.payload;
     },
     setVegan: (state, action) => {
+      state.navigate = action.payload;
+    },
+    setListUser: (state, action) => {
+      state.navigate = action.payload;
+    },
+    setListProduct: (state, action) => {
+      state.navigate = action.payload;
+    },
+    setOnSale: (state, action) => {
+      state.navigate = action.payload;
+    },
+    setBestSeller: (state, action) => {
+      state.navigate = action.payload;
+    },
+    setListOrder: (state, action) => {
       state.navigate = action.payload;
     },
   },

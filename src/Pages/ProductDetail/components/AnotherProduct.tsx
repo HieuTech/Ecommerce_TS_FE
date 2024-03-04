@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
 
+import { Product } from "../../../apis/product.api";
 export default function AnotherProduct(props: any) {
   const { showCategories, setProductDetail } = props;
   
+  console.log("showCate", showCategories);
   
   // Automatically slide to the next product every 2 seconds
 
     const handleSelect = (id:number)=>{
-        const product = showCategories.products.find(product => 
-            product.id ==id)
+        const product = showCategories.find(
+          (product: Product) => product.id == id
+        );
 
         if(!product){
             return false
@@ -55,11 +58,13 @@ export default function AnotherProduct(props: any) {
         <hr />
         <h3 className="another-title">YOU MIGHT ALSO LIKE</h3>
         <div className="another-grid">
-          {showCategories.products?.map((product, index: number) => (
-            <div key={index} className="another-grid-item"
-            onClick={()=>{
+          {showCategories.map((product: Product, index: number) => (
+            <div
+              key={index}
+              className="another-grid-item"
+              onClick={() => {
                 handleSelect(product.id);
-            }}
+              }}
             >
               <img
                 className="another-img"
@@ -68,7 +73,6 @@ export default function AnotherProduct(props: any) {
               />
               <h2 className="another-name">{product.name}</h2>
               <p className="another-price">{product.price}</p>
-
             </div>
           ))}
         </div>

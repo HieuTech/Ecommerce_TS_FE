@@ -7,10 +7,15 @@ import Cake from '../Pages/Categories/Cake/Cake';
 import DashBoard from '../Pages/DashBoard/DashBoard';
 import Vegan from '../Pages/Categories/Vegan/Vegan';
 import Beverage from '../Pages/Categories/Beverage/Beverage';
-
+import ListUser from '../Pages/Users/ListUser/ListUser';
+import BestSeller from '../Pages/Products/BestSeller/BestSeller';
+import ProductList from '../Pages/Products/Product/ProductList';
+import OnSale from '../Pages/Products/OnSale/OnSale';
+import { Outlet } from 'react-router-dom';
 const { Header, Content, Footer } = Layout;
 export default function MainContent() {
     const navigate = useSelector((store) => store.adminReducer.navigate);
+  console.log("navi",navigate);
   
   const result = () =>{
     switch (navigate) {
@@ -22,7 +27,14 @@ export default function MainContent() {
         return <Beverage Beverage={navigate} />;
       case "Vegan":
         return <Vegan Vegan={navigate} />;
-
+      case "ListUser":
+        return <ListUser />;
+      case "OnSale":
+        return <OnSale />;
+      case "ProductList":
+        return <ProductList />;
+      case "BestSeller":
+        return <BestSeller />;
       default:
         return <DashBoard />;
         break;
@@ -45,7 +57,8 @@ export default function MainContent() {
               borderRadius: borderRadiusLG,
             }}
           >
-            {result()}
+            <Outlet {...result()}/>
+            
           </div>
         </Content>
         <Footer style={{ textAlign: "center" }}>

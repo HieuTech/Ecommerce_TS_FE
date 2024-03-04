@@ -1,10 +1,9 @@
 import React, { useEffect, useState } from "react";
 import apis from "../../../../../apis";
-// import "./Cake.scss";
-import "../../Components/Modal.scss";
 
-import ModalAdd from "../../Components/ModalAdd";
-import ModalConfirm from "../../Components/ModalConfirm";
+
+import ModalConfirm from "../../../components/ModalConfirm";
+import ModalAdd from "../../../components/ModalAdd";
 export default function Cake(props: any) {
   const { Cake } = props;
   const [stateCake, setStateCake] = useState();
@@ -12,7 +11,7 @@ export default function Cake(props: any) {
   const handleDelete = (id) => {};
   useEffect(() => {
     const fetchCake = async () => {
-      const res = await apis.categoriesApi.getCategoriesByName(Cake);
+      const res = await apis.categoriesApi.getCategoriesByName("Cake");
       console.log("res", res.data[0]);
 
       setStateCake(res.data[0]);

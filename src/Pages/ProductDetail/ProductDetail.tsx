@@ -1,34 +1,24 @@
 import React, { useEffect, useState } from "react";
 import "./ProductDetail.scss";
 import Header from "../../Components/Header/Header";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 import SocialMedia from "../Home/SocialMedia";
 import { useSelector } from "react-redux";
 import apis from "../../apis";
 import AnotherProduct from "./components/AnotherProduct";
-
-interface ProductDetail {
-  id: number;
-  name: string;
-  price: number;
-  on_sale: true;
-  img: string;
-  rating: number;
-  description: string;
-}
-
+import { Product } from "../../apis/product.api";
 export default function ProductDetail() {
-  const { id, categoriesList } = useSelector(
-    (store) => store.categoriesReducer
-  );
-
-  const [productDetail, setProductDetail] = useState<ProductDetail | null>(
-    null
-  );
+ 
+  const [productDetail, setProductDetail] = useState<Product | null>(null);
   const navigate = useNavigate();
 
-  const [showCategories, setShowCategories] = useState({});
+  //useParam
+  const { id } = useParams();
+  console.log("id", typeof id);
+
+  const [showCategories, setShowCategories] = useState([]);
+
 
   const [mainImage, setMainImage] = useState(
     "https://plus.unsplash.com/premium_photo-1668698355395-60cd173f121b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGNha2V8ZW58MHx8MHx8fDA%3D"
@@ -36,31 +26,41 @@ export default function ProductDetail() {
   const handleSubImageClick = (newSrc: any) => {
     setMainImage(newSrc);
   };
-  console.log("id", id);
-  console.log("cate", categoriesList);
-  
 
   useEffect(() => {
-    categoriesList.forEach((categories: any) => {
-      categories.products.forEach((product: ProductDetail) => {
-        if (product.id == id) {
-          setProductDetail(product);
-          setShowCategories(categories);
-        }
-      });
-    });
-  }, [categoriesList]);
-    
-  
+   
+    const fetchByProductId = async () => {
+      try {
+        const resProductId = await apis.productApi.getProducById(id);
+        console.log("res", resProductId.data);
+        setProductDetail(resProductId.data);
+
+        const getAllProduct = await apis.productApi.getAllProduct();
+        console.log("getAll", getAllProduct.data);
+
+        //ko kip filter
+        const productList = getAllProduct.data?.filter((product: Product) => {
+          return product.categories_id == resProductId.data.categories_id;
+        });
+
+        setShowCategories(productList);
+
+        console.log("productList", showCategories);
+      } catch (error) {
+        console.log("error", error);
+      }
+    };
+    fetchByProductId();
+  }, []);
+
+  // }, [categoriesList]);
 
   return (
     <div>
       <Header />
-
       <div className="detail-container">
         {/* detail-header */}
         <p className="product-detail-header">
-          *Category: {showCategories?.name}
         </p>
 
         <div className="detail-grid">
@@ -139,13 +139,14 @@ export default function ProductDetail() {
             </div>
           </div>
         </div>
-        {/* detail-content */}
       </div>
-      <AnotherProduct
-        showCategories={showCategories}
-        setProductDetail={setProductDetail}
-      />
-
+      ;
+      {showCategories.length > 0 && (
+        <AnotherProduct
+          showCategories={showCategories}
+          setProductDetail={setProductDetail}
+        />
+      )}
       <SocialMedia />
     </div>
   );

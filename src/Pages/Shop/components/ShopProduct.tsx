@@ -1,13 +1,13 @@
 import React, { useEffect } from "react";
-import { categoriesAction } from "../../../Stores/Slice/CategoriesSlice";
-import { useDispatch } from "react-redux";
+
 import { useNavigate } from "react-router-dom";
-import apis from "../../../apis";
+
+import { Product } from "../../../apis/product.api";
+
 export default function ShopProduct(props: any) {
   const { listProduct } = props;
 
   const navigate = useNavigate();
-  const dispatch = useDispatch();
   const displayRating = (rating: number) => {
     const stars: React.ReactNode[] = [];
 
@@ -17,19 +17,13 @@ export default function ShopProduct(props: any) {
     return stars;
   };
   const handleClick = async (id: number) => {
-    try {
-      const res = await apis.categoriesApi.getAllCategories();
-      const categoriesList = res.data;
-      dispatch(categoriesAction.setData({ id, categoriesList }));
-    } catch (error) {
-      console.log("error", error);
-    }
-    navigate("/product-detail");
+
+    navigate(`/product-detail/${id}`);
   };
 
   return (
     <div className="product-grid">
-      {listProduct?.map((product: any, index: number) => (
+      {listProduct?.map((product: Product, index: number) => (
         <div
           key={index}
           className="product-card"
