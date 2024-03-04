@@ -6,7 +6,7 @@ import "./Shop.scss";
 import apis from "../../apis";
 import Pagination from "./components/Pagination";
 import "font-awesome/css/font-awesome.min.css";
-import { uploadFileToStorage } from "../../firebase/index.ts";
+// import { uploadFileToStorage } from "../../firebase/index.ts";
 import ShopProduct from "./components/ShopProduct.tsx";
 
 import { Product } from "../../apis/product.api.ts";

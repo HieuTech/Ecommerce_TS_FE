@@ -1,9 +1,32 @@
 import { Link,  } from "react-router-dom";
 import "./Header.scss"; // Import CSS file
-
+import { verifyToken } from "../../Stores";
 import "font-awesome/css/font-awesome.min.css";
+import { useEffect, useState } from "react";
+
+
 
 const Header = () => {
+
+  const [userName, setUserName] = useState("");
+
+  const handleLogOut = () =>{
+    localStorage.removeItem("token")
+  }
+
+  useEffect(()=>{
+    const token = localStorage.getItem("token");
+    if (token !== null) {
+      const tokenString = JSON.parse(token)
+      verifyToken(tokenString, "ntbphuoc").then((payload: any) => {
+        console.log("payload", payload);
+        if (payload !== null) {
+          setUserName(payload.email);
+        }
+      });
+      // console.log("token", tokenString);
+    }
+  },[])
   
   return (
     <header>
@@ -62,7 +85,10 @@ const Header = () => {
                 <Link to="/user">
                   <p className="header__user-popup-title">Thông tin User</p>
                 </Link>
-                <button>Đăng xuất</button>
+                <button 
+                onClick={()=>{
+                  handleLogOut()
+                }}>Đăng xuất</button>
               </div>
             </li>
           </ul>

@@ -1,67 +1,59 @@
-import React, { useEffect, useState } from "react";
+import React, { FormEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import * as jose from "jose";
-
+import { message } from "antd";
 import "./Signin.scss"; // Import file CSS
 import apis from "../../apis";
+import utils from "../../utils";
+interface CheckUserLogin {
+  email: string;
+  password: string;
+}
+
 const SignIn = () => {
-  let data = {
-    id: 1,
-    name: "Phuoc",
-    age: 30,
-  };
+  const [userList, setUserList] = useState<CheckUserLogin[]>([]);
+  const navigate = useNavigate();
 
-  generateToken(data)
-  .then(res => {
-    console.log("res", res)
-  })
+  const handleSignIn = async (e: FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    const email = (e.target as HTMLFormElement).email.value;
+    const password = (e.target as HTMLFormElement).password.value;
+    const checkAccount = userList.find(
+      (user: CheckUserLogin) => user.email == email
+    );
 
-
-  async function generateToken(data: any) {
-    const jwt = await new jose.SignJWT(data)
-      .setProtectedHeader({ alg: "HS256" })
-      .sign(new TextEncoder().encode("ntbphuoc"));
-    return jwt;
-  }
-
-  async function verifyToken(token: string, key: string) {
-    try {
-      const { payload } = await jose.jwtVerify(
-        token,
-        new TextEncoder().encode(key)
-      );
-      return payload;
-    } catch (error) {
-      return null;
-    }
-  }
-
-  verifyToken(
-    "eyJhbGciOiJIUzI1NiJ9.eyJpZCI6MSwibmFtZSI6IlBodW9jIiwiYWdlIjozMH0.nfViOTwfUsi-F4T5_mRHX9LARdSO1UM_lJbllaVsthc",
-    "ntbphuoc"
-  ).then((payload) => {
-    console.log("payload", payload);
-  });
-
-  const handleSignIn = () => {};
-
-  function validateEmail(email: string, password: string) {
-    // Regular expression pattern for validating email addresses
-
-    const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-
-    const checkValid = regex.test(email);
-
-    if (!checkValid || password.length < 6) {
-      alert("Invalid Email or Password");
+    if (
+      checkAccount &&
+      (checkAccount.email !== email || checkAccount.password !== password)
+    ) {
+      alert("Invalid User");
       return;
     }
-  }
+
+    const userLogin = {
+      email,
+      password,
+    };
+    try {
+      const token = await utils.jwt.generateToken(userLogin);
+      //  console.log("generated jwt", jwt);
+      localStorage.setItem("token", JSON.stringify(token));
+      setTimeout(() => {
+        message.success("Login successful!");
+        navigate("/");
+        utils.jwt.verifyToken(token).then((payload: any) => {
+          console.log("payload", payload);
+        });
+      }, 1000);
+    } catch (error) {
+      console.error("Error generating token:", error);
+    }
+  };
+
+  message.success("Operation successful!");
 
   useEffect(() => {
     const getAllUser = async () => {
       const res = await apis.userApi.getUser();
-      console.log("res", res.data);
       setUserList(res.data);
     };
     getAllUser();

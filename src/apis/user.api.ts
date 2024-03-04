@@ -7,20 +7,22 @@ export enum UserStatus {
     INACTIVE = "INACTIVE"
 }
 
+export interface User {
+  userName: string;
+  password: string;
+  created_at: Date;
+  cart: Product[];
+  avatar: string;
+  status: UserStatus;
+  receipt_id: string;
+}
+
 export const userApi = {
   getUser: async () => {
     return await axios.get(`${import.meta.env.VITE_SERVER}/${prefix}`);
   },
 
-  postUser: async (data: {
-    userName: string;
-    password: string;
-    created_at: Date;
-    cart: Product[];
-    avatar: string;
-    status: UserStatus;
-    receipt_id: string;
-  }) => {
+  postUser: async (data: User) => {
     return await axios.post(`${import.meta.env.VITE_SERVER}/${prefix}`, data);
   },
 

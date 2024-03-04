@@ -11,8 +11,10 @@
   },
   "dependencies": {
     "@reduxjs/toolkit": "^2.2.1",
-    "antd": "^5.14.2",
+    "antd": "^5.15.0",
     "axios": "^1.6.7",
+    "bcrypt": "^5.1.1",
+    "bcryptjs": "^2.4.3",
     "firebase": "^10.8.1",
     "font-awesome": "^4.7.0",
     "jose": "^5.2.2",
@@ -26,6 +28,7 @@
     "sass": "^1.71.1"
   },
   "devDependencies": {
+    "@types/bcrypt": "^5.0.2",
     "@types/react": "^18.2.56",
     "@types/react-dom": "^18.2.19",
     "@typescript-eslint/eslint-plugin": "^7.0.2",
