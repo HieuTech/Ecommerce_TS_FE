@@ -1,9 +1,10 @@
 import React, { FormEvent, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
-import { message } from "antd";
+
 import "./Signin.scss"; // Import file CSS
 import apis from "../../apis";
-import utils from "../../utils";
+import { message } from "antd";
+// import { generateToken, verifyToken } from "../../Stores";
 interface CheckUserLogin {
   email: string;
   password: string;
@@ -20,36 +21,38 @@ const SignIn = () => {
     const checkAccount = userList.find(
       (user: CheckUserLogin) => user.email == email
     );
-
+  
     if (
       checkAccount &&
       (checkAccount.email !== email || checkAccount.password !== password)
     ) {
       alert("Invalid User");
       return;
+    } 
+
+    const signInUser = {
+      email,
+      password
     }
 
-    const userLogin = {
-      email,
-      password,
-    };
-    try {
-      const token = await utils.jwt.generateToken(userLogin);
-      //  console.log("generated jwt", jwt);
-      localStorage.setItem("token", JSON.stringify(token));
-      setTimeout(() => {
-        message.success("Login successful!");
-        navigate("/");
-        utils.jwt.verifyToken(token).then((payload: any) => {
-          console.log("payload", payload);
-        });
-      }, 1000);
-    } catch (error) {
-      console.error("Error generating token:", error);
-    }
+    await apis.userApi.userLogin(signInUser).then(res =>{
+      if(res.status !== 200) {
+        message.error(res.message)
+      }
+      
+
+      if(res.data !== undefined){
+        message.success(res.message)
+        localStorage.setItem("user_token", res.data)
+        setTimeout(()=>{
+          navigate("/")
+        },1000)
+      }
+    });
+    
   };
 
-  message.success("Operation successful!");
+
 
   useEffect(() => {
     const getAllUser = async () => {
@@ -74,8 +77,8 @@ const SignIn = () => {
         <button type="submit" className="btn-signin">
           Đăng nhập
         </button>
-      </form>
-      <Link to="/signup">You have no account -- Sign Up Now</Link>
+      </form> 
+       <Link to="/signup">You have no account -- Sign Up Now</Link> 
     </div>
   );
 };

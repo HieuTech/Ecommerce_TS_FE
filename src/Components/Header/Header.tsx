@@ -1,33 +1,29 @@
-import { Link,  } from "react-router-dom";
+import { Link } from "react-router-dom";
 import "./Header.scss"; // Import CSS file
-import { verifyToken } from "../../Stores";
 import "font-awesome/css/font-awesome.min.css";
 import { useEffect, useState } from "react";
 
-
+import utils from "../../utils";
 
 const Header = () => {
-
   const [userName, setUserName] = useState("");
 
-  const handleLogOut = () =>{
-    localStorage.removeItem("token")
-  }
+  const handleLogOut = () => {
+    localStorage.removeItem("user_token");
+  };
 
-  useEffect(()=>{
-    const token = localStorage.getItem("token");
-    if (token !== null) {
-      const tokenString = JSON.parse(token)
-      verifyToken(tokenString, "ntbphuoc").then((payload: any) => {
-        console.log("payload", payload);
-        if (payload !== null) {
-          setUserName(payload.email);
-        }
-      });
-      // console.log("token", tokenString);
-    }
-  },[])
-  
+  useEffect(() => {
+    const fetchData = async () => {
+      const token = localStorage.getItem("user_token");
+      if (token !== null) {
+       
+        const data = await utils.jwt.verifyToken(token);
+        console.log("verifyInfo", data);
+      }
+    };
+    fetchData();
+  }, []);
+
   return (
     <header>
       <div className="header__container">
@@ -85,10 +81,13 @@ const Header = () => {
                 <Link to="/user">
                   <p className="header__user-popup-title">Thông tin User</p>
                 </Link>
-                <button 
-                onClick={()=>{
-                  handleLogOut()
-                }}>Đăng xuất</button>
+                <button
+                  onClick={() => {
+                    handleLogOut();
+                  }}
+                >
+                  Đăng xuất
+                </button>
               </div>
             </li>
           </ul>

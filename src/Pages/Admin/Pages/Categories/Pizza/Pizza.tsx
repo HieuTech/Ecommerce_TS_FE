@@ -3,8 +3,7 @@ import apis from "../../../../../apis";
 
 import ModalAdd from "../../../components/ModalAdd";
 import ModalConfirm from "../../../components/ModalConfirm";
-export default function Pizza(props: any) {
-  const { Pizza } = props;
+export default function Pizza() {
   
   const [statePizza, setStatePizza] = useState();
 

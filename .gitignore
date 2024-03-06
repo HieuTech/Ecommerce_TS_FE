@@ -1,7 +1,3 @@
-Khi click vào 1 sản phẩm thì product detail hiển thị thông tin bình thường.
-
-product detail khi reload lại trang bị mất dữ liệu, lý do khi click vào 1 sản phẩm, đã dispatch categoriesList và productId vào store, để tiếp tục hiển thị ra bên product detail. Nên refresh lại thì store reset.
-
-Giải pháp khắc phục??
-
+node_modules
+.env
 

@@ -467,13 +467,6 @@
       ]
     }
   ],
-  "admin":[
-    {
-      "id":1,
-      "name": "admin ",
-      "password":"123123123"
-    }
-  ],
   "users": [
     {
       "id": "1",
@@ -512,8 +505,30 @@
           "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/pizza%2F03c3d511-0d4b-4fc1-af2d-4040483a6746.jpg?alt=media&token=5142e46e-166a-4d7b-b896-a29442896c2f"
         }
       ]
+    },
+    {
+      "id": "5776",
+      "userName": "string",
+      "email": "test@gmail.com",
+      "password": "123123123",
+      "created_at": "2024-03-05T13:46:12.953Z",
+      "cart": [],
+      "avatar": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=826&t=st=1709345993~exp=1709346593~hmac=c6fe731b31129b5ae03a36392c3cecce046a77b9acfaffd7875af3c82a3f69ee",
+      "status": "ACTIVE",
+      "receipt_id": ""
     }
-
+  ],
+  "admin": [
+    {
+      "id": 1,
+      "email": "admin@gmail.com",
+      "password": "123"
+    },
+    {
+      "id": 2,
+      "email": "admin1@gmail.com",
+      "password": "123123"
+    }
   ],
   "receipt": [
     {

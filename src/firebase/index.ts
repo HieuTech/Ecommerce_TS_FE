@@ -15,15 +15,15 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 
 export const uploadFileToStorage = async (file: File, folder: string) =>{
+  const storage = getStorage(app);
+  // const filename = uuidv4() + "." + file.name.split(".").pop();
+  const filename = uuidv4() + "." + file.name.split("/")[1];
 
-    const storage = getStorage(app);
-    const filename = uuidv4() + "." + file.name.split(".").pop(); 
+  const storageRef = ref(storage, `${folder}/${filename}`);
 
-    const storageRef = ref(storage,`${folder}/${filename}` );
-
-    const res = await uploadBytes(storageRef, file)
-    const url  = await getDownloadURL(res.ref)
-    return url
+  const res = await uploadBytes(storageRef, file);
+  const url = await getDownloadURL(res.ref);
+  return url;
 }
 
 // export default  uploadFileToStorage

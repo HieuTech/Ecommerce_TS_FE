@@ -24,12 +24,10 @@ import {
   SunOutlined,
 } from "@ant-design/icons";
 import type { MenuProps } from "antd";
-import {  Layout, Menu, theme } from "antd";
+import {  Layout, Menu } from "antd";
 import { useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
-import { adminAction } from "../../../Stores/Slice/AdminSlice";
 
-const { Header, Content, Footer, Sider } = Layout;
+const { Sider } = Layout;
 
 type MenuItem = Required<MenuProps>["items"][number];
 
@@ -49,23 +47,23 @@ function getItem(
 }
 
 const items: MenuItem[] = [
-  getItem("DashBoard", "DashBoard", <DashboardOutlined />),
+  getItem("DashBoard", "/admin/dashboard", <DashboardOutlined />),
   getItem("User", "User", <TeamOutlined />, [
-    getItem("List User", "ListUser", <UserOutlined />),
+    getItem("List User", "/admin/list-user", <UserOutlined />),
     getItem("Email", "Email", <MailOutlined />),
     getItem("Messages", "Messages", <MessageOutlined />),
     getItem("FeedBack", "FeedBack", <FileOutlined />),
   ]),
   getItem("Categories", "Categories", <ShopOutlined />, [
-    getItem("Pizza", "Pizza"),
-    getItem("Cake", "Cake"),
-    getItem("Vegan", "Vegan"),
-    getItem("Beverage", "Beverage"),
+    getItem("Pizza", "/admin/pizza"),
+    getItem("Cake", "/admin/cake"),
+    getItem("Vegan", "/admin/vegan"),
+    getItem("Beverage", "/admin/beverage"),
   ]),
   getItem("Products", "Products", <ProductOutlined />, [
-    getItem("On Sale", "OnSale", <FireOutlined />),
+    getItem("On Sale", "/admin/on-sale", <FireOutlined />),
     getItem("Rating", "Rating", <LikeOutlined />),
-    getItem("Best Seller", "BestSeller", <HeartOutlined />),
+    getItem("Best Seller", "/admin/best-seller", <HeartOutlined />),
     getItem("Voucher", "Voucher", <GiftOutlined />),
   ]),
 
@@ -86,53 +84,14 @@ const items: MenuItem[] = [
 export default function SideBar() {
   const [collapsed, setCollapsed] = useState(false);
   const navigate = useNavigate()
-    const dispatch = useDispatch()
-  const handleNavigate = (e) => {
+  const handleNavigate = (e: any) => {
     switch (e.key) {
-      case "Pizza":
-        // dispatch(adminAction.setPizza("Pizza"));
-        navigate("/admin/pizza");
-        break;
-      case "Cake":
-        // dispatch(adminAction.setCake("Cake"));
-                navigate("/admin/cake");
-
-        break;
-      case "Beverage":
-        // dispatch(adminAction.setBeverage("Beverage"));
-            navigate("/admin/beverage");
-
-        break;
-      case "Vegan":
-        // dispatch(adminAction.setVegan("Vegan"));
-                navigate("/admin/vegan");
-
-        break;
-      case "DashBoard":
-        dispatch(adminAction.setDashBoard("DashBoard"));
-        break;
-      case "ListOrder":
-        dispatch(adminAction.setListOrder("ListOrder"));
-        break;
-      case "BestSeller":
-        navigate("/admin/best-seller");
-        // dispatch(adminAction.setBestSeller("BestSeller"));
-        break;
-      case "ListUser":
-        // dispatch(adminAction.setListUser("ListUser"));
-                navigate("/admin/list-user");
-
-        break;
-      case "ListProduct":
-        dispatch(adminAction.setListProduct("ListProduct"));
-        break;
-      case "OnSale":
-        // dispatch(adminAction.setOnSale("OnSale"));
-                navigate("/admin/on-sale");
-
-        break;
-
+      // case "Pizza":
+      //   navigate("/admin/pizza");
+      //   break;
+      
       default:
+        navigate(e.key);
         break;
     }
   };

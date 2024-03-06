@@ -1,0 +1,15 @@
+.header-admin{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80vw;
+    padding: 10px;
+}
+.btn-logout{
+    padding: 10px 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: blue;
+    color: white;
+    cursor: pointer;
+}

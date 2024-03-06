@@ -1,37 +1,33 @@
 import React, { useEffect, useState } from "react";
 import "./ProductDetail.scss";
 import Header from "../../Components/Header/Header";
-import { useNavigate, useParams } from "react-router-dom";
+import {  useParams } from "react-router-dom";
 
 import SocialMedia from "../Home/SocialMedia";
-import { useSelector } from "react-redux";
 import apis from "../../apis";
 import AnotherProduct from "./components/AnotherProduct";
 import { Product } from "../../apis/product.api";
+
+
+
+
+
 export default function ProductDetail() {
  
   const [productDetail, setProductDetail] = useState<Product | null>(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
   //useParam
   const { id } = useParams();
   console.log("id", typeof id);
 
-  const [showCategories, setShowCategories] = useState([]);
-
-
-  const [mainImage, setMainImage] = useState(
-    "https://plus.unsplash.com/premium_photo-1668698355395-60cd173f121b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGNha2V8ZW58MHx8MHx8fDA%3D"
-  );
-  const handleSubImageClick = (newSrc: any) => {
-    setMainImage(newSrc);
-  };
+  const [showCategories, setShowCategories] = useState < Product[]>([]);
 
   useEffect(() => {
    
     const fetchByProductId = async () => {
       try {
-        const resProductId = await apis.productApi.getProducById(id);
+        const resProductId = await apis.productApi.getProducById(id as string);
         console.log("res", resProductId.data);
         setProductDetail(resProductId.data);
 
@@ -53,8 +49,11 @@ export default function ProductDetail() {
     fetchByProductId();
   }, []);
 
-  // }, [categoriesList]);
 
+  const handleAddToCart = (id: number| undefined) =>{
+    console.log("id",id);
+    
+  };
   return (
     <div>
       <Header />
@@ -70,31 +69,19 @@ export default function ProductDetail() {
                 className="sub-img"
                 src="https://images.unsplash.com/photo-1481391243133-f96216dcb5d2?q=80&w=3328&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="hinh anh"
-                onClick={() => {
-                  handleSubImageClick(
-                    "https://images.unsplash.com/photo-1481391243133-f96216dcb5d2?q=80&w=3328&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                  );
-                }}
+               
               />
               <img
                 className="sub-img"
                 src="https://plus.unsplash.com/premium_photo-1690214491960-d447e38d0bd0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGNha2V8ZW58MHx8MHx8fDA%3D"
                 alt="hinh anh"
-                onClick={() => {
-                  handleSubImageClick(
-                    "https://plus.unsplash.com/premium_photo-1690214491960-d447e38d0bd0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGNha2V8ZW58MHx8MHx8fDA%3D"
-                  );
-                }}
+              
               />
               <img
                 className="sub-img"
                 src="https://plus.unsplash.com/premium_photo-1668698355395-60cd173f121b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGNha2V8ZW58MHx8MHx8fDA%3D"
                 alt="hinh anh"
-                onClick={() => {
-                  handleSubImageClick(
-                    "https://plus.unsplash.com/premium_photo-1668698355395-60cd173f121b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGNha2V8ZW58MHx8MHx8fDA%3D"
-                  );
-                }}
+                
               />
             </div>
           </div>
@@ -130,7 +117,7 @@ export default function ProductDetail() {
                 <button
                   className="add-to-cart"
                   onClick={() => {
-                    handleAddToCart(event);
+                    handleAddToCart(productDetail?.id);
                   }}
                 >
                   Add To Cart

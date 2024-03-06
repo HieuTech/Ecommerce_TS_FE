@@ -2,8 +2,7 @@ import React, { useEffect, useState } from "react";
 import apis from "../../../../../apis";
 import ModalAdd from "../../../components/ModalAdd";
 import ModalConfirm from "../../../components/ModalConfirm";
-export default function Vegan(props: any) {
-  const { Vegan } = props;
+export default function Vegan() {
   const [stateVegan, setStateVegan] = useState();
 
   const handleDelete = (id) => {};

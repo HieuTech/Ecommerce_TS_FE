@@ -11,6 +11,7 @@ export interface Product {
   rating: number;
   price_sale: number;
   categories_id: number;
+  description: string
 }
 
 export const productApi = {

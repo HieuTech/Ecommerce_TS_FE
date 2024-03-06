@@ -4,8 +4,7 @@ import apis from "../../../../../apis";
 
 import ModalConfirm from "../../../components/ModalConfirm";
 import ModalAdd from "../../../components/ModalAdd";
-export default function Cake(props: any) {
-  const { Cake } = props;
+export default function Cake() {
   const [stateCake, setStateCake] = useState();
 
   const handleDelete = (id) => {};

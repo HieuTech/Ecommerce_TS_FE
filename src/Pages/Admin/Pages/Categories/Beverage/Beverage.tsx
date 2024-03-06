@@ -4,8 +4,7 @@ import apis from "../../../../../apis";
 
 import ModalConfirm from "../../../components/ModalConfirm";
 import ModalAdd from "../../../components/ModalAdd";
-export default function Beverage(props: any) {
-  const { Beverage } = props;
+export default function Beverage() {
   const [stateBeverage, setStateBeverage] = useState();
 
   const handleDelete = (id) => {};

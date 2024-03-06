@@ -1,24 +1,29 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 import { Product } from "../../../apis/product.api";
-export default function AnotherProduct(props: any) {
+
+
+interface AnotherProductProps {
+  showCategories: Product[];
+  setProductDetail: React.Dispatch<React.SetStateAction<Product | null>>;
+}
+
+
+export default function AnotherProduct(props: AnotherProductProps) {
   const { showCategories, setProductDetail } = props;
-  
+  console.log("show", showCategories);
+
   console.log("showCate", showCategories);
-  
-  // Automatically slide to the next product every 2 seconds
 
-    const handleSelect = (id:number)=>{
-        const product = showCategories.find(
-          (product: Product) => product.id == id
-        );
+  const handleSelect = (id: number) => {
+    const product = showCategories.find((product: Product) => product.id == id);
 
-        if(!product){
-            return false
-        }
-        setProductDetail(product)
+    if (!product) {
+      return false;
     }
-  
+    setProductDetail(product);
+  };
+
   return (
     <div>
       <div className="detail-content">
