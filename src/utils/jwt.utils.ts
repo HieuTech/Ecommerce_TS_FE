@@ -9,6 +9,7 @@ export const jwt = {
           return jwt;
     },
     verifyToken: async (token: string) => {
+
         try {
           const { payload } = await jose.jwtVerify(
             token,
@@ -18,5 +19,7 @@ export const jwt = {
         } catch (error) {
           return null;
         }
-    }
+    },
+   
 }
+

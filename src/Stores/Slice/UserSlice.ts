@@ -10,21 +10,21 @@ enum Status {
 }
 
 interface UserStatus {
-    data : User | null,
-    loading: boolean
+  data: User | null;
+  loading: boolean;
 }
 
 const initialState: UserStatus = {
-    data: null,
-    loading: false,
-}
+  data: null,
+  loading: false,
+};
 
 
 export const userSlice = createSlice({
     name:"user",
     initialState,
     reducers:{
-
+       
     },
     extraReducers:(builder) =>{
         builder.addCase(fetchUser.pending, (state, action: any) =>{
@@ -37,9 +37,13 @@ export const userSlice = createSlice({
     }
 })
 
+
+
+
+
 const fetchUser = createAsyncThunk("user/fetchData", async () =>{
     const data = await apis.userApi.authen(localStorage.getItem("user_token") || "null")
-       
+    console.log("data", data);
     return data
 })
 

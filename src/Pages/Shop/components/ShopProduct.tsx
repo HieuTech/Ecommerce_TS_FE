@@ -17,7 +17,7 @@ export default function ShopProduct(props: any) {
     return stars;
   };
   const handleClick = async (id: number) => {
-
+    // window.location.href = `/product-detail/${id}`
     navigate(`/product-detail/${id}`);
   };
 

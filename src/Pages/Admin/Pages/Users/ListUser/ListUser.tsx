@@ -46,7 +46,7 @@ export default function ListUser() {
                 <td className="table-cell">{user.email}</td>
                 <td className="table-cell">{user.password}</td>
                 <td className="table-cell">
-                  <img src={user.avatar} alt="" className="img" />
+                  <img src={user.avatar} alt="" className="admin-user-img" style={{width: "150px"}} />
                 </td>
                 <td className="table-cell">{user.status}</td>
 

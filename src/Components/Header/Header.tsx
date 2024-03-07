@@ -3,26 +3,39 @@ import "./Header.scss"; // Import CSS file
 import "font-awesome/css/font-awesome.min.css";
 import { useEffect, useState } from "react";
 
-import utils from "../../utils";
+import { User } from "../../apis/user.api";
+import { useDispatch, useSelector } from "react-redux";
+import { StoreType } from "../../Stores";
+import apis from "../../apis";
+import { UserDataAction } from "../../Stores/Slice/UserData.slice";
 
 const Header = () => {
-  const [userName, setUserName] = useState("");
-
+  const [user, setUser] = useState<User | null>(null);
+  const userData = useSelector((store: StoreType) => store.userReducer)
+  const userEmail = userData.data?.data
+  const dispatch = useDispatch()
+  // console.log("userData", userData.data);
+  
   const handleLogOut = () => {
     localStorage.removeItem("user_token");
+    window.location.href = "/";
   };
 
+  
   useEffect(() => {
-    const fetchData = async () => {
-      const token = localStorage.getItem("user_token");
-      if (token !== null) {
-       
-        const data = await utils.jwt.verifyToken(token);
-        console.log("verifyInfo", data);
+
+    const fetchUserEmail = async () => {
+      try {
+        const res = await apis.userApi.getUserByEmail(userEmail.email);
+        // console.log("res",res.data[0]);
+        setUser(res.data[0]);
+        dispatch(UserDataAction.setData(res.data[0]));
+      } catch (error) {
+        console.log("error", error);
       }
     };
-    fetchData();
-  }, []);
+    fetchUserEmail();
+  }, [user?.cart.length]);
 
   return (
     <header>
@@ -55,41 +68,51 @@ const Header = () => {
         </nav>
         <div className="header__user">
           <ul className="header__user-list">
-            <li className="header__user-item">
-              <Link to="/signin">Sign In</Link>
-            </li>
+            {user ? (
+              <div className="header_group">
+                <li className="header__user-item">
+                  <Link to="/cart">
+                    <i className="fa fa-shopping-cart"></i>
+                    Cart
+                    
+                      <span className="totalQuantity">{user.cart.length}</span>
+                    
+                  </Link>
+                </li>
 
-            <li className="header__user-item">
-              <Link to="/signup">Sign Up</Link>
-            </li>
-
-            <li className="header__user-item">
-              <Link to="/cart">
-                <i className="fa fa-shopping-cart"></i>
-                Cart
-                <span className="totalQuantity"></span>
-              </Link>
-            </li>
-
-            <li className="header__user-item-user">
-              <img
-                src="https://cdn-icons-png.flaticon.com/128/6997/6997662.png"
-                alt="user"
-                className="header__user-item-img"
-              />
-              <div className="header__user-popup">
-                <Link to="/user">
-                  <p className="header__user-popup-title">Thông tin User</p>
-                </Link>
-                <button
-                  onClick={() => {
-                    handleLogOut();
-                  }}
-                >
-                  Đăng xuất
-                </button>
+                <li className="header__user-item-user">
+                  <div className="header-icon">
+                    <img
+                      src={user.avatar}
+                      alt="user"
+                      className="header__user-item-img"
+                    />
+                    <span className="header_user_name">{user.userName}</span>
+                  </div>
+                  <div className="header__user-popup">
+                    <Link to="/user-info">
+                      <p className="header__user-popup-title">Thông tin User</p>
+                    </Link>
+                    <button
+                      onClick={() => {
+                        handleLogOut();
+                      }}
+                    >
+                      Đăng xuất
+                    </button>
+                  </div>
+                </li>
               </div>
-            </li>
+            ) : (
+              <div className="header_group">
+                <li className="header__user-item">
+                  <Link to="/signin">Sign In</Link>
+                </li>
+                <li className="header__user-item">
+                  <Link to="/signup">Sign Up</Link>
+                </li>
+              </div>
+            )}
           </ul>
         </div>
       </div>

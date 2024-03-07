@@ -1,11 +1,10 @@
 import React, { useState } from "react";
 import { Button, Modal } from "antd";
 
-export default function ModalConfirm(props: any) {
-  const { Categories } = props;
-
+export default function ModalOrderChangeStatus(props: any) {
+    const {orderId} = props
   const [open, setOpen] = useState(false);
-
+ console.log("order");
   const showModal = () => {
     setOpen(true);
   };
@@ -13,7 +12,6 @@ export default function ModalConfirm(props: any) {
   const handleOk = () => {
     //button ok
     setOpen(false);
-    
   };
 
   const handleCancel = () => {
@@ -22,8 +20,8 @@ export default function ModalConfirm(props: any) {
 
   return (
     <>
-      <Button type="primary" danger onClick={showModal}>
-        DELETE
+      <Button type="primary" onClick={showModal}>
+        Change Status
       </Button>
       <Modal
         title="CONFIRM!"

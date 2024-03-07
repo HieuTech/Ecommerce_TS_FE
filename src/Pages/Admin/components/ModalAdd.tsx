@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import { Button, Modal } from "antd";
 import "./Modal.scss"
+
+
 export default function ModalAdd(props: any) {
   const { Categories } = props;
   

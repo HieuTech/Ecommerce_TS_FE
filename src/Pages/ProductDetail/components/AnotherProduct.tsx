@@ -1,6 +1,7 @@
 import React from "react";
 
 import { Product } from "../../../apis/product.api";
+import { useNavigate } from "react-router-dom";
 
 
 interface AnotherProductProps {
@@ -11,17 +12,16 @@ interface AnotherProductProps {
 
 export default function AnotherProduct(props: AnotherProductProps) {
   const { showCategories, setProductDetail } = props;
-  console.log("show", showCategories);
-
-  console.log("showCate", showCategories);
-
+ 
+  const navigate = useNavigate()
   const handleSelect = (id: number) => {
     const product = showCategories.find((product: Product) => product.id == id);
-
+    
     if (!product) {
       return false;
     }
     setProductDetail(product);
+    navigate(`/product-detail/${id}`);
   };
 
   return (
@@ -77,7 +77,10 @@ export default function AnotherProduct(props: AnotherProductProps) {
                 alt={product.name}
               />
               <h2 className="another-name">{product.name}</h2>
-              <p className="another-price">{product.price}</p>
+              <p className="another-price">
+                {" "}
+                ${product?.price_sale ? product?.price_sale : product?.price}
+              </p>
             </div>
           ))}
         </div>

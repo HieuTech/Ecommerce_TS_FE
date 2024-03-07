@@ -16,21 +16,23 @@ export interface User {
   created_at: Date;
   cart: Product[];
   avatar: string;
-  status: UserStatus;
-  receipt_id: string;
+  status: UserStatus
 }
 
 export const userApi = {
   getUser: async () => {
     return await axios.get(`${import.meta.env.VITE_SERVER}/${prefix}`);
   },
-
-  userLogin: async (data: { email: string; password: string }) => {
+  getUserByEmail: async (email: string) => {
+    return await axios.get(`${import.meta.env.VITE_SERVER}/${prefix}?email=${email}`);
+  },
+  userLogin: async (data: { id:string,  email: string; password: string }) => {
     try {
       const res = await axios.get(
         `${import.meta.env.VITE_SERVER}/${prefix}?email=${data.email}`
       );
-      // console.log("res", res.data.data);
+
+      console.log("res", res?.data[0]);
       const adminLogin = res?.data[0];
 
       if (!adminLogin) {
@@ -47,7 +49,7 @@ export const userApi = {
 
       return {
         status: 200,
-        data: await utils.jwt.generateToken(adminLogin),
+        data: await utils.jwt.generateToken(data),
         message: UserMessageStatus.success_user_login,
       };
     } catch (error) {
@@ -57,6 +59,7 @@ export const userApi = {
       };
     }
   },
+
   authen: async (token: string) => {
     try {
       const data = await utils.jwt.verifyToken(token);
@@ -127,19 +130,15 @@ export const userApi = {
     return await axios.post(`${import.meta.env.VITE_SERVER}/${prefix}`, data);
   },
 
-  blockUser: async (data: { id: number; status: string }) => {
+  blockUser: async (data: { id: string; status: string }) => {
     return await axios.patch(
       `${import.meta.env.VITE_SERVER}/${prefix}/${data.id}`,
       data
     );
   },
 
-  updateUser: async (data: {
-    id: number;
-    userName: string;
-    avatar: string;
-  }) => {
-    return await axios.post(
+  updateUser: async (data: { id: string; cart: any[] }) => {
+    return await axios.patch(
       `${import.meta.env.VITE_SERVER}/${prefix}/${data.id}`,
       data
     );

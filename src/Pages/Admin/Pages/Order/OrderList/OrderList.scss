@@ -1,0 +1,13 @@
+.btn-see-detail {
+  border: none;
+  font-size: 1.2em;
+  background-color: azure(239, 219, 219);
+  cursor: pointer;
+  padding: 5px 10px;
+  border-radius: 5px;
+  color: rgb(24, 124, 212);
+  &:hover {
+    opacity: 5px;
+    background-color: rgb(236, 215, 215);
+  }
+}

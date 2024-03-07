@@ -10,6 +10,7 @@ export const lazyFn = (
   url: string | null = null
 ) => {
   const LazyComponent = lazy(importFunc);
+
   // const LazyComponent = lazy(() => {
   //   return new Promise((resolve) => {
   //     setTimeout(() => {
@@ -18,10 +19,10 @@ export const lazyFn = (
   //   });
   // });
   
-  
- if (!access) {
-   return <PermissionDenied url={url}></PermissionDenied>;
- }
+
+  if (!access) {
+    return <PermissionDenied url={url}></PermissionDenied>;
+  }
 
   return (
     <Suspense fallback={<Loading />}>

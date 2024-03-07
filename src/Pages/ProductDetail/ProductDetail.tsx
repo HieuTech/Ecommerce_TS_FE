@@ -1,38 +1,108 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import "./ProductDetail.scss";
 import Header from "../../Components/Header/Header";
-import {  useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 
 import SocialMedia from "../Home/SocialMedia";
 import apis from "../../apis";
 import AnotherProduct from "./components/AnotherProduct";
 import { Product } from "../../apis/product.api";
-
-
-
-
+import { useDispatch, useSelector } from "react-redux";
+import { StoreType } from "../../Stores";
+import { UserDataAction } from "../../Stores/Slice/UserData.slice";
+import { message } from "antd";
 
 export default function ProductDetail() {
- 
   const [productDetail, setProductDetail] = useState<Product | null>(null);
-  // const navigate = useNavigate();
 
   //useParam
   const { id } = useParams();
-  console.log("id", typeof id);
+  const [quantityProduct, setQuantityProduct] = useState(1);
+  const [showCategories, setShowCategories] = useState<Product[]>([]);
+  const userDataStore = useSelector(
+    (store: StoreType) => store.UserDataReducer
+  );
+  const UserData = userDataStore.data?.cart;
 
-  const [showCategories, setShowCategories] = useState < Product[]>([]);
+  const dispatch = useDispatch();
+
+  const handleAddToCart = (product_id: number | undefined) => {
+    const updatedUserDataCart = UserData?.map((cart) => {
+      console.log("cart", cart);
+
+      if (cart.product_id == product_id) {
+        const updatedQuantity = Number(cart.quantity) + Number(quantityProduct);
+        const updatedTotalPrice =
+          updatedQuantity * (cart.price_sale ? cart.price_sale : cart.price);
+        message.success("Cập nhật giỏ hàng thành công");
+
+        return {
+          ...cart,
+          quantity: updatedQuantity,
+          total_price: updatedTotalPrice,
+        };
+      }
+      return cart;
+    });
+
+    // Check if the product_id was not found in the cart
+
+    const isNewItem = !updatedUserDataCart?.some(
+      (cart) => cart.product_id == product_id
+    );
+    if (isNewItem) {
+      const newItem = {
+        id: "" + Math.ceil(Math.random() * Date.now()),
+        name: productDetail?.name,
+        price_sale: productDetail?.price_sale,
+        img: productDetail?.img,
+        price: productDetail?.price,
+        product_id: product_id,
+        quantity: quantityProduct,
+        total_price:
+          quantityProduct *
+          (productDetail?.price_sale
+            ? productDetail.price_sale
+            : productDetail.price),
+      };
+
+      updatedUserDataCart?.push(newItem);
+      message.success("Thêm vào giỏ hàng thành công");
+
+      console.log("updatedUserDataCart", updatedUserDataCart);
+    }
+    const updateCart = {
+      id: userDataStore.data?.id,
+      cart: updatedUserDataCart,
+    };
+
+    apiUpdate(updateCart);
+    dispatch(UserDataAction.setCart(updatedUserDataCart));
+    console.log("update", updatedUserDataCart);
+
+   
+    setTimeout(() => {
+      window.location.href = `/product-detail/${id}`;
+    }, 700);
+
+    //API Update Cart
+  };
+
+  const apiUpdate = async (updateCart) => {
+    try {
+      await apis.userApi.updateUser(updateCart);
+    } catch (error) {
+      console.log("error", error);
+    }
+  };
 
   useEffect(() => {
-   
     const fetchByProductId = async () => {
       try {
         const resProductId = await apis.productApi.getProducById(id as string);
-        console.log("res", resProductId.data);
         setProductDetail(resProductId.data);
 
         const getAllProduct = await apis.productApi.getAllProduct();
-        console.log("getAll", getAllProduct.data);
 
         //ko kip filter
         const productList = getAllProduct.data?.filter((product: Product) => {
@@ -40,27 +110,18 @@ export default function ProductDetail() {
         });
 
         setShowCategories(productList);
-
-        console.log("productList", showCategories);
       } catch (error) {
         console.log("error", error);
       }
     };
     fetchByProductId();
   }, []);
-
-
-  const handleAddToCart = (id: number| undefined) =>{
-    console.log("id",id);
-    
-  };
   return (
     <div>
       <Header />
       <div className="detail-container">
         {/* detail-header */}
-        <p className="product-detail-header">
-        </p>
+        <p className="product-detail-header"></p>
 
         <div className="detail-grid">
           <div className="grid-item">
@@ -69,19 +130,16 @@ export default function ProductDetail() {
                 className="sub-img"
                 src="https://images.unsplash.com/photo-1481391243133-f96216dcb5d2?q=80&w=3328&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
                 alt="hinh anh"
-               
               />
               <img
                 className="sub-img"
                 src="https://plus.unsplash.com/premium_photo-1690214491960-d447e38d0bd0?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTd8fGNha2V8ZW58MHx8MHx8fDA%3D"
                 alt="hinh anh"
-              
               />
               <img
                 className="sub-img"
                 src="https://plus.unsplash.com/premium_photo-1668698355395-60cd173f121b?w=800&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTl8fGNha2V8ZW58MHx8MHx8fDA%3D"
                 alt="hinh anh"
-                
               />
             </div>
           </div>
@@ -97,7 +155,12 @@ export default function ProductDetail() {
           <div className="grid-item">
             <div className="detail-content">
               <h1 className="title">{productDetail?.name}</h1>
-              <span className="item-price">${productDetail?.price}</span>
+              <span className="item-price">
+                $
+                {productDetail?.price_sale
+                  ? productDetail?.price_sale
+                  : productDetail?.price}
+              </span>
               <p className="item-desc">
                 A spicy collaboration with Daring 🔥
                 <p>{productDetail?.description}</p>
@@ -111,6 +174,9 @@ export default function ProductDetail() {
                 min="1"
                 max="30"
                 defaultValue={1}
+                onChange={(event) => {
+                  setQuantityProduct((event.target as any).value);
+                }}
               />
 
               <div className="btn">

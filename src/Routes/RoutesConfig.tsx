@@ -10,7 +10,11 @@ export default function RoutesConfig() {
         <Route path="/" element={lazyFn(() => import("../Pages/Home/Home"))} />
         <Route
           path="/cart"
-          element={lazyFn(() => import("../Pages/Cart/Cart"))}
+          element={lazyFn(
+            () => import("../Pages/Cart/Cart"),
+            localStorage.getItem("user_token") !== null ? true : false,
+            "/shop"
+          )}
         />
         <Route
           path="/signin"
@@ -29,10 +33,13 @@ export default function RoutesConfig() {
             "/"
           )}
         />
-
         <Route
           path="/checkout"
-          element={lazyFn(() => import("../Pages/Checkout/Checkout"))}
+          element={lazyFn(
+            () => import("../Pages/Checkout/Checkout"),
+            localStorage.getItem("user_token") !== null ? true : false,
+            "/shop"
+          )}
         />
         <Route
           path="/order-received"
@@ -113,6 +120,13 @@ export default function RoutesConfig() {
             element={lazyFn(
               () =>
                 import("../Pages/Admin/Pages/Products/BestSeller/BestSeller")
+            )}
+          />
+          <Route
+            path="/admin/OrderList"
+            element={lazyFn(
+              () =>
+                import("../Pages/Admin/Pages/Order/OrderList/OrderList")
             )}
           />
         </Route>

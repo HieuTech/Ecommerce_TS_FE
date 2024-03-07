@@ -20,7 +20,7 @@ export default function SignUp() {
     const password = (e.target as HTMLFormElement).password.value;
 
     const addUser = {
-      userName: "string",
+      userName: "User" + Math.ceil(Math.random() * Date.now()),
       email,
       password,
       created_at: new Date(),
@@ -28,7 +28,6 @@ export default function SignUp() {
       avatar:
         "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=826&t=st=1709345993~exp=1709346593~hmac=c6fe731b31129b5ae03a36392c3cecce046a77b9acfaffd7875af3c82a3f69ee",
       status: UserStatus.ACTIVE,
-      receipt_id: "",
     };
 
     const res = await apis.userApi.userSignUp(addUser);
