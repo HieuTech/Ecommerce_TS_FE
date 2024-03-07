@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Button, Modal } from "antd";
+import { Button, Modal, message } from "antd";
+import apis from "../../../../../apis";
 
 export default function ModalBlock(props) {
-  const { userStatus } = props;
-
+  const { user } = props;
   const [open, setOpen] = useState(false);
   const [isStatus, setIsStatus] = useState(true);
 
@@ -11,17 +11,40 @@ export default function ModalBlock(props) {
     setOpen(true);
   };
 
-  const handleOk = () => {
-    //button ok
+  const handleOk = async () => {
+
+    const checkStatus = () =>{
+      if(user.status == "ACTIVE"){
+        return {
+          id: user.id,
+          status: "INACTIVE"
+        }
+      }else{
+        return {
+          id: user.id,
+          status: "ACTIVE"
+        }
+      }
+    }
+    console.log("status",checkStatus());
+     
+      try {
+        const res = await apis.userApi.updateStatusUser(checkStatus())
+        message.success("Cập nhật trạng thái thành công");
+        window.location.reload();
+        console.log("res", res.data);
+      } catch (error) {
+        console.log("error",error);
+      }
+   
     setOpen(false);
-    console.log("ok");
   };
 
   const handleCancel = () => {
     setOpen(false);
   };
   useEffect(() => {
-    if (userStatus == "ACTIVE") {
+    if (user.status == "ACTIVE") {
       setIsStatus(true);
     } else {
       setIsStatus(false);

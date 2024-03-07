@@ -6,10 +6,7 @@ export default function ListUser() {
   const [listUser, setListUser] = useState();
 
   console.log("list ", );
-
-
     
-
   useEffect(()=>{
 
     const fetchUser = async() =>{
@@ -52,7 +49,7 @@ export default function ListUser() {
 
                 <td className="table-cell">{user.receipt_id}</td>
                 <td className="table-cell">
-                  <ModalBlock userStatus={user.status} />
+                  <ModalBlock user={user} />
                 </td>
               </tr>
             );

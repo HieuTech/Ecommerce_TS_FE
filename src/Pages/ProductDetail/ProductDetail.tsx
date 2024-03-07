@@ -19,6 +19,7 @@ export default function ProductDetail() {
   const { id } = useParams();
   const [quantityProduct, setQuantityProduct] = useState(1);
   const [showCategories, setShowCategories] = useState<Product[]>([]);
+
   const userDataStore = useSelector(
     (store: StoreType) => store.UserDataReducer
   );
@@ -27,6 +28,7 @@ export default function ProductDetail() {
   const dispatch = useDispatch();
 
   const handleAddToCart = (product_id: number | undefined) => {
+
     const updatedUserDataCart = UserData?.map((cart) => {
       console.log("cart", cart);
 
@@ -76,6 +78,7 @@ export default function ProductDetail() {
       cart: updatedUserDataCart,
     };
 
+
     apiUpdate(updateCart);
     dispatch(UserDataAction.setCart(updatedUserDataCart));
     console.log("update", updatedUserDataCart);
@@ -101,7 +104,8 @@ export default function ProductDetail() {
       try {
         const resProductId = await apis.productApi.getProducById(id as string);
         setProductDetail(resProductId.data);
-
+        console.log("res",resProductId.data);
+        
         const getAllProduct = await apis.productApi.getAllProduct();
 
         //ko kip filter

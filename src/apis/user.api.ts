@@ -32,7 +32,7 @@ export const userApi = {
         `${import.meta.env.VITE_SERVER}/${prefix}?email=${data.email}`
       );
 
-      console.log("res", res?.data[0]);
+      
       const adminLogin = res?.data[0];
 
       if (!adminLogin) {
@@ -138,6 +138,12 @@ export const userApi = {
   },
 
   updateUser: async (data: { id: string; cart: any[] }) => {
+    return await axios.patch(
+      `${import.meta.env.VITE_SERVER}/${prefix}/${data.id}`,
+      data
+    );
+  },
+  updateStatusUser: async (data: { id: string; status: UserStatus  }) => {
     return await axios.patch(
       `${import.meta.env.VITE_SERVER}/${prefix}/${data.id}`,
       data

@@ -4,10 +4,11 @@ import { Link, useNavigate } from "react-router-dom";
 import "./Signin.scss"; // Import file CSS
 import apis from "../../apis";
 import { message } from "antd";
-
+import { UserStatus } from "../../apis/user.api";
 interface CheckUserLogin {
   email: string;
   password: string;
+  status: UserStatus
 }
 
 const SignIn = () => {
@@ -15,6 +16,8 @@ const SignIn = () => {
 
   const [userList, setUserList] = useState<CheckUserLogin[]>([]);
  
+
+
   const handleSignIn = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const email = (e.target as HTMLFormElement).email.value;
@@ -30,19 +33,26 @@ const SignIn = () => {
       alert("Invalid User");
       return;
     }
+
+    if(checkAccount && (checkAccount?.status == "INACTIVE")){
+      alert("Your account is blocked!")
+      return
+    }
+
     console.log("checkAccount", checkAccount);
     
     const signInUser = {
       id: checkAccount?.id,
       email,
       password,
+      status: checkAccount?.status
     };
 
     await apis.userApi.userLogin(signInUser).then((res) => {
       if (res.status !== 200) {
         message.error(res.message);
       }
-
+      
       if (res.data !== undefined) {
         message.success(res.message);
         localStorage.setItem("user_token", res.data);
