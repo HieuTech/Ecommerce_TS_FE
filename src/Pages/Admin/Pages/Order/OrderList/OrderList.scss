@@ -11,3 +11,22 @@
     background-color: rgb(236, 215, 215);
   }
 }
+
+.btn-modal-status-approved, .btn-modal-status-cancel{
+  border-radius: 5px;
+  color: rgb(255, 255, 255);
+  background-color: rgb(90, 230, 90);
+  border: none;
+  margin: 10px;
+  padding: 10px 15px;
+  &:hover{
+    opacity: 0.7;
+    
+  }
+}
+.container-orderlist{
+  text-align: center;
+}
+.btn-modal-status-cancel{
+  background-color: red;
+}

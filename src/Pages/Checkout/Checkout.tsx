@@ -69,8 +69,20 @@ function Orders() {
       console.log("error", error);
     }
 
-    
-
+    //update user receipt_status, receipt_id
+    const updateUser = {
+      id: receipt.user_id,
+      status: receipt.status,
+      receipt_id: receipt.id
+    }
+    try {
+      const res = await apis.userApi.updateUserReceiptStatus(updateUser)
+      console.log("res", res.data);
+      
+    } catch (error) {
+      console.log("error", error);
+      
+    }
 
   };
   //---------validate

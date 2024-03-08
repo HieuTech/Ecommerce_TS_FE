@@ -2,6 +2,7 @@ import axios from "axios";
 import { Product } from "./product.api";
 import { UserMessageStatus } from "./const/admin.const";
 import utils from "../utils";
+import { ReceiptStatus } from "./receipt.api";
 const prefix = "users";
 
 export enum UserStatus {
@@ -149,6 +150,14 @@ export const userApi = {
       data
     );
   },
+
+  updateUserReceiptStatus: async (data: { id: string;  receipt_id: string ; status:ReceiptStatus  }) => {
+    return await axios.patch(
+      `${import.meta.env.VITE_SERVER}/${prefix}/${data.id}`,
+      data
+    );
+  },
+
   deleteUser: async (id: number) => {
     return await axios.post(`${import.meta.env.VITE_SERVER}/${prefix}/${id}`);
   },

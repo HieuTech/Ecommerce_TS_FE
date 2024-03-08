@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import apis from "../../../../../apis";
 import "./OrderList.scss";
-import ModalAdd from "../../../components/ModalAdd";
-import ModalOrderChangeStatus from "../../../components/ModalOrderChangeStatus";
+import ModalStatusOrder from "./ModalStatusOrder";
 export default function OrderList() {
+
   const [stateOrderList, setStateOrderList] = useState();
 
   const handleDelete = (id) => {};
@@ -20,7 +20,7 @@ export default function OrderList() {
     <div>
       <div className="categories-container">
         <h1 className="categories-title">Order List </h1>
-        <ModalAdd Categories={stateOrderList} />
+        
         <table className="product-table">
           <tr>
             <th className="table-header">STT</th>
@@ -54,7 +54,7 @@ export default function OrderList() {
                 <td className="table-cell">{order.status}</td>
 
                 <td className="table-cell">
-                  {/* <ModalOrderChangeStatus orderId ={order.id}/> */}
+                  <ModalStatusOrder order={order}/>
                 </td>
               </tr>
             );

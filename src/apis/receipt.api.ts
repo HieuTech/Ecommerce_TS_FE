@@ -34,12 +34,12 @@ export const receiptApi = {
     );
   },
   updateReceiptApprove: async (data: {
-    receipt_id: number;
-    approved: boolean;
+    id: string;
+    status: ReceiptStatus;
   }) => {
     return await axios.patch(
-      `${import.meta.env.VITE_SERVER}/${prefix}/${data.receipt_id}`,
-      data.approved
+      `${import.meta.env.VITE_SERVER}/${prefix}/${data.id}`,
+      data
     );
   },
 };

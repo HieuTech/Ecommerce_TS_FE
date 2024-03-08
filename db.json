@@ -469,35 +469,6 @@
   ],
   "users": [
     {
-      "id": "1",
-      "password": "123123123",
-      "email": "java@gmail.com",
-      "userName": "Google",
-      "receipt_id": "1",
-      "status": "ACTIVE",
-      "avatar": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=826&t=st=1709345993~exp=1709346593~hmac=c6fe731b31129b5ae03a36392c3cecce046a77b9acfaffd7875af3c82a3f69ee",
-      "cart": [
-        {
-          "id": "1307730210658",
-          "name": "Romance Cake",
-          "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/cake%2Fae06bbfc-e7c8-45f4-985f-75d2dc3d1e0d.jpg?alt=media&token=a9c12bbb-e9ea-44d7-b1c3-f1882cfbbb3a",
-          "price": 239.99,
-          "product_id": "8",
-          "quantity": 5,
-          "total_price": 1199.95
-        },
-        {
-          "id": "39058460641",
-          "name": "Coconut Cake",
-          "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/cake%2Fd53f056d-a78c-41ea-a85b-9ab32c7a6f84.jpg?alt=media&token=41803f93-ecd6-4ecb-a2bc-d07b2a467d5e",
-          "price": 649.99,
-          "product_id": "6",
-          "quantity": 5,
-          "total_price": 3249.95
-        }
-      ]
-    },
-    {
       "id": "d57c",
       "userName": "1169558158644",
       "email": "demo@gmail.com",
@@ -505,44 +476,24 @@
       "created_at": "2024-03-07T07:40:51.481Z",
       "cart": [],
       "avatar": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=826&t=st=1709345993~exp=1709346593~hmac=c6fe731b31129b5ae03a36392c3cecce046a77b9acfaffd7875af3c82a3f69ee",
-      "status": "ACTIVE"
+      "status": "pending",
+      "user_status":"PENDING"
     }
   ],
   "admin": [
     {
-      "id": 1,
+      "id": "1",
       "email": "admin@gmail.com",
       "password": "123"
     },
     {
-      "id": 2,
+      "id": "2",
       "email": "admin1@gmail.com",
       "password": "123123"
     }
   ],
   "receipt": [
-    {
-      "id": "267234440516",
-      "created_at": "2024-03-07T07:25:22.893Z",
-      "userName": "Google",
-      "phoneNumber": "0934123123",
-      "address": "150",
-      "payment_method": "",
-      "status": "pending",
-      "total_price": 1540,
-      "product": [
-        {
-          "id": "692380712134",
-          "name": "Romance Cake",
-          "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/cake%2Fae06bbfc-e7c8-45f4-985f-75d2dc3d1e0d.jpg?alt=media&token=a9c12bbb-e9ea-44d7-b1c3-f1882cfbbb3a",
-          "price": 239.99,
-          "product_id": "8",
-          "quantity": 0,
-          "total_price": 0
-        }
-      ],
-      "user_id": "1"
-    },
+ 
     {
       "id": "851548016230",
       "created_at": "2024-03-07T08:59:46.314Z",
@@ -550,7 +501,7 @@
       "phoneNumber": "0934123132",
       "address": "123",
       "payment_method": "vietcombank",
-      "status": "pending",
+      "status": "cancel",
       "total_price": 2670,
       "product": [
         {
@@ -574,57 +525,7 @@
         }
       ],
       "user_id": "d57c"
-    },
-    {
-      "id": "1112117835813",
-      "created_at": "2024-03-07T12:17:54.281Z",
-      "userName": "admin",
-      "phoneNumber": "0375094637",
-      "address": "150/Nguyen Van Cu",
-      "payment_method": "momo",
-      "status": "pending",
-      "total_price": 3070,
-      "product": [
-        {
-          "id": "1 ",
-          "product_id": "4",
-          "name": "Vegan Chili Pizza",
-          "price": 439.99,
-          "total_price": 1319.97,
-          "quantity": 3,
-          "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/pizza%2F03c3d511-0d4b-4fc1-af2d-4040483a6746.jpg?alt=media&token=5142e46e-166a-4d7b-b896-a29442896c2f"
-        },
-        {
-          "id": "2 ",
-          "product_id": "22",
-          "name": "Detox water",
-          "price": 269.99,
-          "price_sale": 109.99,
-          "total_price": 219.98,
-          "quantity": 2,
-          "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/beverage%2F80a5b54e-51b9-472a-975c-40bd6395fba0.jpg?alt=media&token=7faf9e4a-144e-4514-9d3f-9616e5556f12"
-        },
-        {
-          "id": "692380712134",
-          "name": "Romance Cake",
-          "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/cake%2Fae06bbfc-e7c8-45f4-985f-75d2dc3d1e0d.jpg?alt=media&token=a9c12bbb-e9ea-44d7-b1c3-f1882cfbbb3a",
-          "price": 239.99,
-          "product_id": "8",
-          "quantity": 5,
-          "total_price": 1199.95
-        },
-        {
-          "id": "1083080676715",
-          "name": "Plant-based milk",
-          "price_sale": 109.99,
-          "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/beverage%2F36e810b9-0d47-47ff-bc11-8fcb6960cad9.jpg?alt=media&token=bd7f89c9-7526-4402-b9b5-bf52beeb4a63",
-          "price": 269.99,
-          "product_id": "21",
-          "quantity": "3",
-          "total_price": 329.96999999999997
-        }
-      ],
-      "user_id": "1"
     }
+    
   ]
 }

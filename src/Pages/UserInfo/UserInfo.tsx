@@ -50,7 +50,7 @@ const UserInfo = () => {
       </div>
       <div className="user-info-item">
         <label>
-          Order Status:{" "}
+          Order Status : {userData?.status}
           <button className="btn btn-changeInfo">Cancel Order</button>
         </label>
       </div>

@@ -8,3 +8,5 @@ admin chưa đăng nhập ko vào dc /admin
 
 -Khi đăng nhập thành công sẽ mã hoá thông tin user, cấp cho user mã token khi họ đăng nhập.
 
+Phân trang, search theo name sản phầm, filter theo categories name, sort theo best seller, on sale,
+giá from low to high, high to low
