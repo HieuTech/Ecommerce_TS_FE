@@ -477,7 +477,51 @@
       "cart": [],
       "avatar": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=826&t=st=1709345993~exp=1709346593~hmac=c6fe731b31129b5ae03a36392c3cecce046a77b9acfaffd7875af3c82a3f69ee",
       "status": "pending",
-      "user_status":"PENDING"
+      "user_status": "INACTIVE",
+      "receipt_id": "92245861870"
+    },
+    {
+      "id": "5f11",
+      "userName": "User834126606247",
+      "email": "test@gmail.com",
+      "password": "123123123",
+      "created_at": "2024-03-08T04:51:41.916Z",
+      "cart": [],
+      "avatar": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=826&t=st=1709345993~exp=1709346593~hmac=c6fe731b31129b5ae03a36392c3cecce046a77b9acfaffd7875af3c82a3f69ee",
+      "status": "pending",
+      "receipt_id": "98764292067",
+      "user_status": "INACTIVE"
+    },
+    {
+      "id": "e811",
+      "userName": "User215147907415",
+      "email": "project@gmail.com",
+      "password": "123123123",
+      "created_at": "2024-03-08T06:40:24.977Z",
+      "cart": [
+        {
+          "id": "654579003432",
+          "name": "Romance Cake",
+          "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/cake%2Fae06bbfc-e7c8-45f4-985f-75d2dc3d1e0d.jpg?alt=media&token=a9c12bbb-e9ea-44d7-b1c3-f1882cfbbb3a",
+          "price": 239.99,
+          "product_id": "8",
+          "quantity": "2",
+          "total_price": 479.98
+        },
+        {
+          "id": "366583309448",
+          "name": "Chocolate Oreo",
+          "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/beverage%2F5e42918e-68cf-4b6f-ac5e-7bbb5ee2ef8c.jpg?alt=media&token=58593e3f-2ab8-4f01-9909-8bd8456e26a6",
+          "price": 539.99,
+          "product_id": "18",
+          "quantity": "2",
+          "total_price": 1079.98
+        }
+      ],
+      "avatar": "https://img.freepik.com/free-psd/3d-illustration-person-with-sunglasses_23-2149436188.jpg?w=826&t=st=1709345993~exp=1709346593~hmac=c6fe731b31129b5ae03a36392c3cecce046a77b9acfaffd7875af3c82a3f69ee",
+      "status": "pending",
+      "receipt_id": "858013750193",
+      "user_status": "ACTIVE"
     }
   ],
   "admin": [
@@ -493,7 +537,6 @@
     }
   ],
   "receipt": [
- 
     {
       "id": "851548016230",
       "created_at": "2024-03-07T08:59:46.314Z",
@@ -501,7 +544,7 @@
       "phoneNumber": "0934123132",
       "address": "123",
       "payment_method": "vietcombank",
-      "status": "cancel",
+      "status": "approved",
       "total_price": 2670,
       "product": [
         {
@@ -525,7 +568,112 @@
         }
       ],
       "user_id": "d57c"
+    },
+    {
+      "id": "92245861870",
+      "created_at": "2024-03-08T04:46:08.542Z",
+      "userName": "we",
+      "phoneNumber": "0934123132",
+      "address": "213",
+      "payment_method": "momo",
+      "status": "pending",
+      "total_price": 3780,
+      "product": [
+        {
+          "id": "294584628538",
+          "name": "Romance Cake",
+          "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/cake%2Fae06bbfc-e7c8-45f4-985f-75d2dc3d1e0d.jpg?alt=media&token=a9c12bbb-e9ea-44d7-b1c3-f1882cfbbb3a",
+          "price": 239.99,
+          "product_id": "8",
+          "quantity": 5,
+          "total_price": 1199.95
+        },
+        {
+          "id": "1686985530647",
+          "name": "Spinach Smoothie",
+          "price_sale": 139.99,
+          "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/beverage%2F979e06a6-5487-4260-bd48-7d832e0a881e.jpg?alt=media&token=e2e0a7b3-155d-4882-b888-4de7717e9aaa",
+          "price": 269.99,
+          "product_id": "20",
+          "quantity": 3,
+          "total_price": 419.97
+        },
+        {
+          "id": "867392580595",
+          "name": "Chocolate Oreo",
+          "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/beverage%2F5e42918e-68cf-4b6f-ac5e-7bbb5ee2ef8c.jpg?alt=media&token=58593e3f-2ab8-4f01-9909-8bd8456e26a6",
+          "price": 539.99,
+          "product_id": "18",
+          "quantity": "4",
+          "total_price": 2159.96
+        }
+      ],
+      "user_id": "d57c"
+    },
+    {
+      "id": "98764292067",
+      "created_at": "2024-03-08T04:53:33.724Z",
+      "userName": "new user",
+      "phoneNumber": "0934123123",
+      "address": "150/Nguyen Van Cu",
+      "payment_method": "momo",
+      "status": "cancel",
+      "total_price": 1700,
+      "product": [
+        {
+          "id": "587942436693",
+          "name": "Lentil soup",
+          "price_sale": 309.99,
+          "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/vegan%2Ff30dd2e7-e409-4634-bcc1-9c235b333c50.jpg?alt=media&token=0b303124-3d51-4d03-bc5f-842abd038927",
+          "price": 429.99,
+          "product_id": "13",
+          "quantity": "2",
+          "total_price": 619.98
+        },
+        {
+          "id": "1579263274220",
+          "name": "Vegan desserts",
+          "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/vegan%2Fad3dc3f7-ba26-416a-9ec5-7687a7db2e06.jpg?alt=media&token=438797ed-4d19-4e31-95b1-bc8af5c30f25",
+          "price": 539.99,
+          "product_id": "12",
+          "quantity": 2,
+          "total_price": 1079.98
+        }
+      ],
+      "user_id": "5f11"
+    },
+    {
+      "id": "858013750193",
+      "created_at": "2024-03-08T06:48:53.219Z",
+      "userName": "Nguyen Minh Hung",
+      "phoneNumber": "0934123123",
+      "address": "77 Le Trung Nghia ",
+      "payment_method": "vietcombank",
+      "status": "cancel",
+      "total_price": 1390,
+      "product": [
+        {
+          "id": "553607526648",
+          "name": "Lentil soup",
+          "price_sale": 309.99,
+          "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/vegan%2Ff30dd2e7-e409-4634-bcc1-9c235b333c50.jpg?alt=media&token=0b303124-3d51-4d03-bc5f-842abd038927",
+          "price": 429.99,
+          "product_id": "13",
+          "quantity": 2,
+          "total_price": 619.98
+        },
+        {
+          "id": "342672361938",
+          "name": "Vegan Tacos",
+          "price_sale": 109.99,
+          "img": "https://firebasestorage.googleapis.com/v0/b/ecommerce-react-ts-45a3b.appspot.com/o/vegan%2F1f60dd82-99bc-419b-805b-f1e6e2d1505a.jpg?alt=media&token=406ae6ad-9c9c-4948-961b-db694d0d3a9d",
+          "price": 269.99,
+          "product_id": "15",
+          "quantity": 7,
+          "total_price": 769.93
+        }
+      ],
+      "user_id": "e811"
     }
-    
   ]
 }

@@ -14,16 +14,16 @@ export default function ModalBlock(props) {
   const handleOk = async () => {
 
     const checkStatus = () =>{
-      if(user.status == "ACTIVE"){
+      if (user.user_status == "ACTIVE") {
         return {
           id: user.id,
-          status: "INACTIVE"
-        }
-      }else{
+          user_status: "INACTIVE",
+        };
+      } else {
         return {
           id: user.id,
-          status: "ACTIVE"
-        }
+          user_status: "ACTIVE",
+        };
       }
     }
     console.log("status",checkStatus());
@@ -44,7 +44,7 @@ export default function ModalBlock(props) {
     setOpen(false);
   };
   useEffect(() => {
-    if (user.status == "ACTIVE") {
+    if (user.user_status == "ACTIVE") {
       setIsStatus(true);
     } else {
       setIsStatus(false);

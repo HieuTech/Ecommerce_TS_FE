@@ -19,7 +19,7 @@ export default function BestSeller() {
   return (
     <div>
       <div className="categories-container">
-        <h1 className="categories-title">On Sale </h1>
+        <h1 className="categories-title">Best Seller </h1>
         <ModalAdd Categories={stateBestSeller} />
         <table className="product-table">
           <tr>

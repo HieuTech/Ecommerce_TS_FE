@@ -8,7 +8,7 @@ import { UserStatus } from "../../apis/user.api";
 interface CheckUserLogin {
   email: string;
   password: string;
-  status: UserStatus
+  user_status: UserStatus
 }
 
 const SignIn = () => {
@@ -34,7 +34,7 @@ const SignIn = () => {
       return;
     }
 
-    if(checkAccount && (checkAccount?.status == "INACTIVE")){
+    if(checkAccount && (checkAccount?.user_status == "INACTIVE")){
       alert("Your account is blocked!")
       return
     }
@@ -45,7 +45,7 @@ const SignIn = () => {
       id: checkAccount?.id,
       email,
       password,
-      status: checkAccount?.status
+      user_status: checkAccount?.user_status
     };
 
     await apis.userApi.userLogin(signInUser).then((res) => {

@@ -9,6 +9,7 @@ const initialState: UserStatus = {
   data: null,
 };
 
+
 export const UserDataSlice = createSlice({
   name: "userData",
   initialState,

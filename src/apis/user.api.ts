@@ -25,15 +25,16 @@ export const userApi = {
     return await axios.get(`${import.meta.env.VITE_SERVER}/${prefix}`);
   },
   getUserByEmail: async (email: string) => {
-    return await axios.get(`${import.meta.env.VITE_SERVER}/${prefix}?email=${email}`);
+    return await axios.get(
+      `${import.meta.env.VITE_SERVER}/${prefix}?email=${email}`
+    );
   },
-  userLogin: async (data: { id:string,  email: string; password: string }) => {
+  userLogin: async (data: { id: string; email: string; password: string }) => {
     try {
       const res = await axios.get(
         `${import.meta.env.VITE_SERVER}/${prefix}?email=${data.email}`
       );
 
-      
       const adminLogin = res?.data[0];
 
       if (!adminLogin) {
@@ -144,14 +145,18 @@ export const userApi = {
       data
     );
   },
-  updateStatusUser: async (data: { id: string; status: UserStatus  }) => {
+  updateStatusUser: async (data: { id: string; user_status: UserStatus }) => {
     return await axios.patch(
       `${import.meta.env.VITE_SERVER}/${prefix}/${data.id}`,
       data
     );
   },
 
-  updateUserReceiptStatus: async (data: { id: string;  receipt_id: string ; status:ReceiptStatus  }) => {
+  updateUserReceiptStatus: async (data: {
+    id: string;
+    receipt_id: string;
+    status: ReceiptStatus;
+  }) => {
     return await axios.patch(
       `${import.meta.env.VITE_SERVER}/${prefix}/${data.id}`,
       data

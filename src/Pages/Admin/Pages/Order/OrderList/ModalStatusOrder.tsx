@@ -25,7 +25,7 @@ export default function ModalStatusOrder(props) {
   const handleChangeStatus = async (status: ReceiptStatus) =>{
 
 
-    if(status = ReceiptStatus.APPROVED){
+    if(status == ReceiptStatus.APPROVED){
 
         const updateReceipt = {
             id: order.id,
@@ -60,7 +60,7 @@ export default function ModalStatusOrder(props) {
 
 
     }
-    if(status = ReceiptStatus.CANCEL){
+    if(status == ReceiptStatus.CANCEL){
         const updateReceipt = {
             id: order.id,
             status: ReceiptStatus.CANCEL
